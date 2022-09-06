@@ -14,6 +14,7 @@ const store = createStore(
 ReactDom.render(
     <Provider store={store}>
         <App/>
+        {/* <Admin/> */}
     </Provider>,
     document.getElementById('root')
 );

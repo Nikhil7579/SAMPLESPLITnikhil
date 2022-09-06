@@ -8,7 +8,7 @@ class Login extends React.Component{
         return(
             <section id="main">
                     <div className="nav-item">
-                        <a className="navbar-brand" href="/">Vusic</a>
+                        <a className="navbar-brand" href="/">SAMPLESPLIT.COM</a>
                     </div>
                     <div className="main-row">
                         <div className="main-row-img">
@@ -16,7 +16,7 @@ class Login extends React.Component{
                         </div>
                         <div className="main-row-text">
                             <h1>Music for everyone</h1>
-                            <p>Without music, life would be a mistake</p>
+                            <p>Without music, life would be Incomplete</p>
                             <Link to={"/home"} className="btn">
                                 Start Listening
                             </Link>

@@ -8,10 +8,12 @@ class Brand extends React.Component {
         return (
             <div  className={"brand"}>
                 <Link to={"/home"}>
-                    <h1>
-                        V
-                        <img src={Logo} width={"24px"} alt=""/>
-                        sic
+                    
+                    <h1 style={{backgroundColor:'#09143C'}}>
+                    <img src={Logo} width={"24px"} alt=""/>
+                       <span style={{color:'white',fontFamily:'proxima-nova'}}>SAMPLE</span> 
+                       <span style={{color:'#4169e1',fontFamily:'proxima-nova'}}>SPLIT</span>
+                       <span style={{fontSize:'30px',color:'#4169e1'}}>.com</span>
                     </h1>
                 </Link>
             </div>

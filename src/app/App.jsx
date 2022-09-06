@@ -7,6 +7,7 @@ import {ThemeContext, themes} from "../api/Theme";
 import musicDB from "../db/music";
 import {useDispatch, useSelector} from "react-redux";
 import {setPlaylist} from "../actions/actions";
+import Admin from "../Adminpanel/Admin";
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
                     <Switch>
                         <Route path="/" exact component={Login}/>
                         <Route path="/home" component={Home}/>
+                        <Route path="/dashboard" exact component={Admin}/>
                     </Switch>
                 </Router>
             </>

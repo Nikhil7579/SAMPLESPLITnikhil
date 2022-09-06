@@ -1,19 +1,19 @@
 {
-  "short_name": "Vusic",
-  "name": "Vusic | The music destination you want.",
+  "short_name": "SAMPLESPLIT",
+  "name": "SampleSplit.com | The music destination you need.",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logoc.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "logoc.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "samplelogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

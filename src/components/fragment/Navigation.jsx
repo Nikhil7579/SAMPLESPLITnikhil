@@ -8,6 +8,7 @@ import Brand from "./Brand";
 import DropDownProfile from "./DropDownProfile";
 import {Avatar, Button} from "@material-ui/core";
 import {ThemeContext} from "../../api/Theme";
+import logo from '../assets/img/logoc.png'
 
 function Navigation() {
 
@@ -51,7 +52,7 @@ function Navigation() {
             </div>
             <div className="profile" onClick={handleOpenProfile}>
                 <Button className={"Dropdown-btn"}
-                        startIcon={<Avatar style={{width:'30px',height:'30px',padding:'18px'}} >VS</Avatar>}
+                        startIcon={<Avatar style={{/* width:'30px',height:'30px',padding:'18px' */}} >{<img src={logo} width={'50px'} height={'40px'}/>}</Avatar>}
                         endIcon={isOpenProfile ? <ExpandMoreIcon/> : <ExpandLessIcon/>}>
 
                 </Button>
