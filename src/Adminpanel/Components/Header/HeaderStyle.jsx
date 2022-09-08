@@ -20,7 +20,8 @@ export const useStyles = makeStyles((theme) => {
       height: "auto",
       background: "#4169e1",
       boxSizing: "border-box",
-      padding: "70px 24px 24px 270px",
+      padding: "50px 24px 24px 270px",
+      marginTop:"-55px",
       [theme.breakpoints.down("sm")]: {
         padding: "70px 24px 24px 24px",
       },
@@ -42,6 +43,7 @@ export const useStyles = makeStyles((theme) => {
     brandBox: {
       display: "flex",
       flexFlow: "row wrap",
+     
     },
     dropdownlist: {
       maxWidth: "250px",
@@ -62,6 +64,7 @@ export const useStyles = makeStyles((theme) => {
     navlink: {
       color: blueGrey[700],
       transition: "0.8s",
+      
       "&:hover  div": {
         color: blue["A400"],
       },
@@ -69,6 +72,7 @@ export const useStyles = makeStyles((theme) => {
     navButton: { width: "100%", textTransform: "capitalize" },
     selectedNav: {
       color: `${blue[800]} !important`,
+      marginTop:"0px",
       fontWeight: " bolder",
       " & div": {
         color: `${blue[800]} !important`,

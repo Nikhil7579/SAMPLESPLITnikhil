@@ -4,11 +4,14 @@ import { colors } from "../Theme";
 export const useStyles = makeStyles((theme) => ({
   section: {
     margin: theme.spacing(2, 0),
+    
+    
   },
   pageLabel: {
     color: colors.baselight,
     marginBottom: theme.spacing(1),
     textTransform: "uppercase",
+    marginTop:"-55px"
   },
   pageHeader: {
     color: colors.baseDark,
@@ -18,6 +21,7 @@ export const useStyles = makeStyles((theme) => ({
   responsiveImg: {
     width: "100%",
     height: "auto",
+    
   },
   cardImage: {
     maxHeight: "150px !important",
@@ -40,6 +44,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0),
     textTransform: "capitalize",
     textAlign: "center",
+    
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.8rem",
       margin: theme.spacing(1, 0),
@@ -50,6 +55,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: "0px !important",
     minHeight: "140px",
     height: "auto",
+    
   },
   displayCardGraph: {
     width: "100%",

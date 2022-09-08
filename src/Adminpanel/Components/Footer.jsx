@@ -19,7 +19,7 @@ export default function Footer() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant='body1' color='textSecondary' align='center'>
-            All right reserved @Greatcoders {date.getFullYear()}
+            All right reserved {date.getFullYear()}
           </Typography>
         </Grid>
       </Grid>
