@@ -10,23 +10,23 @@ import { NavLink } from "react-router-dom";
 import { useStyles } from "./HeaderStyle";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import BookIcon from "@material-ui/icons/Book";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import PostAddIcon from "@material-ui/icons/PostAdd";
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export default function SidenavData({ handleDrawerClose }) {
   const classes = useStyles();
   const listItemData = [
     { label: "Dashboard", link: "/", icon: <DashboardIcon /> },
-    { label: "Blog Post", link: "/blog", icon: <BookIcon /> },
-    { label: "Link 1", link: "/link1", icon: <PostAddIcon /> },
+    { label: "Upload Music", link: "/blog", icon: <UploadFileIcon /> },
+    { label: "View", link: "/link1", icon: <PostAddIcon /> },
     {
-      label: "Notification",
+      label: "Analytics",
       link: "/notification",
-      icon: <NotificationsActiveIcon />,
+      icon: <AnalyticsIcon />,
     },
-    { label: "logout", link: "/logout", icon: <ExitToAppIcon /> },
+    { label: "Admin Details", link: "/logout", icon: <ExitToAppIcon /> },
   ];
 
   return (

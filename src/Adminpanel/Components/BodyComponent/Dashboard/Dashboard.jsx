@@ -94,7 +94,7 @@ export default function Dashboard() {
   return (
     <Box mt={2}>
       {/* //title section  */}
-      <PageHeader label='Dashboard' title='Blog Overview' />
+      <PageHeader label='Dashboard' title='Application Overview' />
 
       <Grid container spacing={1} className={classes.section}>
         {DisplayData.map((item, i) => (

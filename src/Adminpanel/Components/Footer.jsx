@@ -12,10 +12,10 @@ export default function Footer() {
     <Box className={classes.footer}>
       <Grid container spacing={1}>
         <Grid item xs={12} sm={6}>
-          <Typography variant='body1' color='textSecondary' align='center'>
+          {/* <Typography variant='body1' color='textSecondary' align='center'>
             Created With <FavoriteIcon style={{ color: red["A200"] }} /> and
             affection
-          </Typography>
+          </Typography> */}
         </Grid>
         <Grid item xs={12} sm={6}>
           <Typography variant='body1' color='textSecondary' align='center'>
