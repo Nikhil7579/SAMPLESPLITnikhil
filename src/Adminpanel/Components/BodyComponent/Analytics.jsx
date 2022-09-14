@@ -10,14 +10,14 @@ import {
 import { blue, green, lightBlue, red, teal } from "@material-ui/core/colors";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import { useStyles } from "../BodyStyles";
-import GraphComponent from "../../../Common/GraphComponent";
-import BlogGraph from "./BlogGraph";
-import Section3 from "./Section3";
-import { fakeArrayGenrator } from "../../../Common/fakeDataGenetator";
-import { PageHeader } from "../../../Common/Components";
+import { useStyles } from "../BodyComponent/BodyStyles";
+import GraphComponent from "../../Common/GraphComponent";
+import BlogGraph from "../BodyComponent/Dashboard/BlogGraph";
+import Section3 from "../BodyComponent/Dashboard/Section3";
+import { fakeArrayGenrator } from "../../Common/fakeDataGenetator";
+import { PageHeader } from "../../Common/Components";
 
-export default function Dashboard() {
+export default function Analytics() {
   const classes = useStyles();
   const [hasFetched, setHasFetched] = useState(false);
 
@@ -76,7 +76,7 @@ export default function Dashboard() {
   ];
 
   //updating the graph
-/*   useEffect(() => {
+  useEffect(() => {
     if (!hasFetched) {
       GraphData.map((item) =>
         GraphComponent({
@@ -89,14 +89,14 @@ export default function Dashboard() {
       setHasFetched(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [DisplayData]); */
+  }, [DisplayData]);
 
   return (
     <Box mt={2}>
       {/* //title section  */}
       <PageHeader label='Dashboard' title='Application Overview' />
 
-      {/* <Grid container spacing={1} className={classes.section}>
+      {<Grid container spacing={1} className={classes.section}>
         {DisplayData.map((item, i) => (
           <Grid key={i} item xs={6} sm={3} md={3}>
             <Card>
@@ -133,10 +133,10 @@ export default function Dashboard() {
             </Card>
           </Grid>
         ))}
-      </Grid> */}
+      </Grid>}
 
       {/* section blog graph  */}
-      <BlogGraph />
+      {/* <BlogGraph /> */}
       {/* <Section3 /> */}
     </Box>
   );

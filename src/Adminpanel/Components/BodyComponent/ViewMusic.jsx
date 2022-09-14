@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Link1() {
+export default function ViewMusic() {
   return (
     <div>
       <h1>View music</h1>

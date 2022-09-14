@@ -34,7 +34,7 @@ let musicDB = [
     {
         id: 2,
         name: "OverMyHead",
-        author_name: " ROY KNOX",
+        author_name: "ROY KNOX",
         img: "over-my-head-1602154826-mOiKzOJDe6.jpg",
         lang: "ENGLISH",
         type: "electronic",
@@ -146,6 +146,8 @@ let musicDB = [
 ];
 
 export default musicDB;
+
+
 /*let musicDB = [
   {
     id:0,

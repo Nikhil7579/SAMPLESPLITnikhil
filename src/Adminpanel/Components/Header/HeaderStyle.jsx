@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => {
       width: "100%",
       minHeight: "100vh",
       height: "auto",
-      background: "#4169e1",
+      background: "#2F76DB",
       boxSizing: "border-box",
       padding: "50px 24px 24px 270px",
       marginTop:"-55px",

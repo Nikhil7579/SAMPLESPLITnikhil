@@ -34,7 +34,7 @@ export default function Notification() {
 
   return (
     <Fragment>
-      <IconButton
+      {/* <IconButton
         aria-controls='notification'
         aria-haspopup='true'
         onClick={handleClick}
@@ -42,7 +42,7 @@ export default function Notification() {
         <Badge badgeContent={dropDownData.length} color='secondary'>
           <NotificationsRoundedIcon />
         </Badge>
-      </IconButton>
+      </IconButton> */}
       <Menu
         id='notification'
         anchorEl={anchorEl}

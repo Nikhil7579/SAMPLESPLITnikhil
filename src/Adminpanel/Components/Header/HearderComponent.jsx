@@ -4,10 +4,11 @@ import { Route, Switch } from "react-router-dom";
 import { useStyles } from "./HeaderStyle";
 import NavbarComponent from "./NavbarComponent";
 import Sidenav from "./Sidenav";
-import Notification from "./ActionTab/Notification";
-import BlogPost from "../BodyComponent/Upload";
+import Analytics from '../BodyComponent/Analytics';
+import UploadMusic from "../BodyComponent/UploadMusic";
 import Dashboard from "../BodyComponent/Dashboard/Dashboard";
-import Link1 from "../BodyComponent/Link1";
+import ViewMusic from "../BodyComponent/ViewMusic"
+import AdminDetails from "../BodyComponent/AdminDetails";
 
 export default function HearderComponent() {
   const classes = useStyles();
@@ -15,11 +16,10 @@ export default function HearderComponent() {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-    console.log("Jai siya ram");
+    
   };
   const handleDrawerClose = () => {
-    setMobileOpen(false);
-    console.log("prem se bolo Jai siya ram");
+    setMobileOpen(false); 
   };
   return (
     <Fragment>
@@ -31,11 +31,12 @@ export default function HearderComponent() {
       />
       <Box className={classes.wrapper}>
         <Switch>
-          <Route exact path='/' render={() => <Dashboard />} />
+          <Route exact path='/' render={() => <Dashboard />}/>
           <Route exact path='/dashboard' render={() => <Dashboard />} />   
-          <Route exact path='/blog' render={() => <BlogPost />} />
-          <Route exact path='/link1' render={() => <Link1 />} />
-          <Route exact path='/notification' render={() => <Notification />} />
+          <Route exact path='/upload' render={() => <UploadMusic/>} />
+          <Route exact path='/ViewMusic' render={() => <ViewMusic />} />
+          <Route exact path='/analytics' render={() => <Analytics/>} />
+          <Route exact path='/admindetails' render={() => <AdminDetails/>}/>
         </Switch>
       </Box>
     </Fragment>

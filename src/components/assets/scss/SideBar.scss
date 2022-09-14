@@ -6,6 +6,7 @@
   height: 80vh;
   overflow: auto;
   border-right: 1px solid #e0e0e0;
+  
   .p1 {
     border-bottom: 1px solid #e0e0e0;
     padding: 15px;
@@ -18,14 +19,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    /* color: white; */
     .MuiButton-startIcon{
       color: #07689f;
+      /* color: white; */
     }
   }
   .aside-bar-container {
     display: flex;
     flex-flow: column;
     width: 100%;
+    /* background-color:black; */
+    /* color: white; */
   }
   .playlist{
     flex: 1;

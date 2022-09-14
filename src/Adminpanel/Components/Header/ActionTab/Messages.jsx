@@ -33,7 +33,7 @@ export default function Messages() {
 
   return (
     <Fragment>
-      <IconButton
+     {/*  <IconButton
         aria-controls='Messages'
         aria-haspopup='true'
         onClick={handleClick}
@@ -41,7 +41,7 @@ export default function Messages() {
         <Badge badgeContent={dropDownData.length} color='secondary'>
           <ForumIcon />
         </Badge>
-      </IconButton>
+      </IconButton> */}
       <Menu
         id='Messages'
         anchorEl={anchorEl}

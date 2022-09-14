@@ -9,6 +9,7 @@
   }
   .main-home{
     flex: 0.8;
+    /* background-color:black; */  // background of home page cards will become black 
   }
 }
 .current-large-banner{
@@ -18,6 +19,7 @@
   width: 100%;
   height: 90vh;
 }
+
 @media only screen and (max-width: 970px) {
   .home-music-container {
     .sidebar-home{
@@ -25,6 +27,7 @@
     }
     .main-home{
       flex: 1;
+      /* background-color:black; */  // to turn on black background when on small devices
     }
   }
 }
