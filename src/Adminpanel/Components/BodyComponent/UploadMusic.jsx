@@ -13,39 +13,54 @@ import { Typography } from "@material-ui/core";
 // import { useStyles } from "./BodyStyles";
 
 const BlogPost = () => {
-  const [inputfield, setInputfield] = useState('')
-  const [inputtype, setInputtype] = useState('')
-  const [beat, setBeat] = useState('')
-  const [key, setKey] = useState('')
-  const [primary, setPrimary] = useState('')
-  const [songtype, setSongtype] = useState('')
-  const [image, setImage] = useState('')
+
+  let token = localStorage.getItem('logintoken')
+
+
+  // const [inputfield, setInputfield] = useState('')
+  // const [inputtype, setInputtype] = useState('')
+  // const [beat, setBeat] = useState('')
+  // const [key, setKey] = useState('')
+  // const [primary, setPrimary] = useState('')
+  // const [songtype, setSongtype] = useState('')
+  // const [image, setImage] = useState('')
   /* const classes = useStyles(); */
+  let [files,setImage]=useState(null);
+  let [music,setMusic]=useState(null);
+  let [trackTitle,settrackTitle]=useState();
+  let [trackType,settrackType]=useState();
+  let [bpm,setbpm]=useState();
+  let [keyOptional,setkeyOptional]=useState();
+  let [primaryGenre,setprimaryGenre]=useState();
+  let [type,setType]=useState();
+ 
 
   const Search = () => {
+    let formData = new FormData();
+    formData.append('image',files);
+    formData.append('music',music);
+    formData.append('trackTitle', trackTitle);
+    formData.append('trackType', trackType);
+    formData.append('bpm', bpm);
+    formData.append('keyOptional', keyOptional);
+    formData.append('primaryGenre', primaryGenre);
+    formData.append('type', type);
 
-    console.log(inputfield, inputtype, beat, key, primary, songtype, image)
 
     axios(
       {
         url: "http://localhost:5001/api/admin/audioUpload",
-        method: 'post',
-        data: {
-          inputfield: inputfield,
-          inputtype: inputtype,
-          beat: beat,
-          key: key,
-          primary: primary,
-          songtype: songtype,
-          image: image
+        method: "post",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
+        data: formData,
         }
-      })
-      .then(result => {
-        console.log(result)
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    ).then((response)=>{
+         console.log(response);
+    }).catch((err)=>{
+         console.log(err);
+    })
   }
 
   return (
@@ -66,43 +81,47 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Track Title"
-            onChange={(e) => setInputfield(e.target.value)}
+            onChange={(e) => settrackTitle(e.target.value)}
             sx={{ backgroundColor: "white",
             textColor: "red"}}
           />
           <TextField
             id="outlined-required"
             label="Track Type"
-            onChange={(e) => setInputtype(e.target.value)}
+            onChange={(e) => settrackType(e.target.value)}
 
           />
           <TextField
             id="outlined-required"
             label="BPM(Beat per minute)"
-            onChange={(e) => setBeat(e.target.value)}
+            onChange={(e) => setbpm(e.target.value)}
           />
           <TextField
             id="outlined-required"
             label="Key(Optional)"
-            onChange={(e) => setKey(e.target.value)}
+            onChange={(e) => setkeyOptional(e.target.value)}
           />
           <TextField
             id="outlined-required"
             label="Primary genre"
-            onChange={(e) => setPrimary(e.target.value)}
+            onChange={(e) => setprimaryGenre(e.target.value)}
+          />
+          <TextField
+            id="outlined-required"
+            label="Type"
+            onChange={(e) => setType(e.target.value)}
           />
           <TextField
             id="filled-search"
             type='file'
-            // label="song type"
-            onChange={(e) => setSongtype(e.target.value)}
+            // label="Song "
+            onChange={(e) => setMusic(e.target.files[0])}
             variant="filled"
           />
           <TextField
             id="filled-search"
-
-            // label="Set Image"
-            onChange={(e) => setImage(e.target.value)}
+            // label="Image"
+            onChange={(e) => setImage(e.target.files[0])}
             variant="filled"
             type='file'
           />

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import './App.scss';
-import Home from "../components/Pages/Home";
+import Home from "../components/Pages/Home.jsx";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from "../components/Pages/Login";
 import {ThemeContext, themes} from "../api/Theme";
@@ -8,6 +8,9 @@ import musicDB from "../db/music";
 import {useDispatch, useSelector} from "react-redux";
 import {setPlaylist} from "../actions/actions";
 import Admin from "../Adminpanel/Admin";
+import AdminlogIn from "../Adminpanel/adminlogin";
+import Usersignup from "../components/Pages/Auth/UsersignUp/usersignup.jsx";
+import UserLogIn from "../components/Pages/Auth/UselogIn/userlogin.jsx"
 
 const App = () => {
 
@@ -34,7 +37,10 @@ const App = () => {
                 <Router>
                     <Switch>
                         <Route path="/" exact component={Login}/>
+                        <Route path="/usersignup" component={Usersignup}/>
+                        <Route path="/userlogin" component={UserLogIn}/>
                         <Route path="/home" component={Home}/>
+                        <Route path="/adminlogin" exact component={AdminlogIn}/>
                         <Route path="/dashboard" exact component={Admin}/>
                     </Switch>
                 </Router>
