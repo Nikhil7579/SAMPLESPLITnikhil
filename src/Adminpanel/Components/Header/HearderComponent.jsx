@@ -9,6 +9,7 @@ import UploadMusic from "../BodyComponent/UploadMusic";
 import Dashboard from "../BodyComponent/Dashboard/Dashboard";
 import ViewMusic from "../BodyComponent/ViewMusic"
 import AdminDetails from "../BodyComponent/AdminDetails";
+import AdminlogIn from "../../adminlogin";
 
 export default function HearderComponent() {
   const classes = useStyles();
@@ -16,10 +17,10 @@ export default function HearderComponent() {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-    
+
   };
   const handleDrawerClose = () => {
-    setMobileOpen(false); 
+    setMobileOpen(false);
   };
   return (
     <Fragment>
@@ -31,12 +32,13 @@ export default function HearderComponent() {
       />
       <Box className={classes.wrapper}>
         <Switch>
-          <Route exact path='/' render={() => <Dashboard />}/>
-          <Route exact path='/dashboard' render={() => <Dashboard />} />   
-          <Route exact path='/upload' render={() => <UploadMusic/>} />
+          <Route exact path='/' render={() => <Dashboard />} />
+          <Route exact path='/dashboard' render={() => <Dashboard />} />
+          <Route exact path='/upload' render={() => <UploadMusic />} />
           <Route exact path='/ViewMusic' render={() => <ViewMusic />} />
-          <Route exact path='/analytics' render={() => <Analytics/>} />
-          <Route exact path='/admindetails' render={() => <AdminDetails/>}/>
+          <Route exact path='/analytics' render={() => <Analytics />} />
+          <Route exact path='/admindetails' render={() => <AdminDetails />} />
+          <Route exact path='/adminlogout' render={() => <AdminlogIn />} />
         </Switch>
       </Box>
     </Fragment>

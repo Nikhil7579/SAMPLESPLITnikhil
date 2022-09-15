@@ -47,11 +47,11 @@ export default function UserLogIn() {
   };
   const submit = (e) => {
     e.preventDefault();
-    singUpApi();
+    logInApi();
     // setformErrors(validate(data));
     // setIsSubmit(true);
   };
-  const singUpApi = () => {
+  const logInApi = () => {
     axios(
       {
         url: "http://localhost:5001/api/user/login",
@@ -68,9 +68,7 @@ export default function UserLogIn() {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          setTimeout(() => {
             window.location.href="/home";
-          }, 2000)
         }
       })
       .catch((err) => {

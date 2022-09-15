@@ -175,9 +175,7 @@ export default function Usersignup() {
       .then((response) => {
         console.log(response);
         if (response.status === 201) {
-          setTimeout(() => {
             window.location.href="/userlogin";
-          }, 2000)
         }
       })
       .catch((err) => {

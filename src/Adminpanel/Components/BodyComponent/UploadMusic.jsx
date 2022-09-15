@@ -25,20 +25,20 @@ const BlogPost = () => {
   // const [songtype, setSongtype] = useState('')
   // const [image, setImage] = useState('')
   /* const classes = useStyles(); */
-  let [files,setImage]=useState(null);
-  let [music,setMusic]=useState(null);
-  let [trackTitle,settrackTitle]=useState();
-  let [trackType,settrackType]=useState();
-  let [bpm,setbpm]=useState();
-  let [keyOptional,setkeyOptional]=useState();
-  let [primaryGenre,setprimaryGenre]=useState();
-  let [type,setType]=useState();
- 
+  let [files, setImage] = useState(null);
+  let [music, setMusic] = useState();
+  let [trackTitle, settrackTitle] = useState();
+  let [trackType, settrackType] = useState();
+  let [bpm, setbpm] = useState();
+  let [keyOptional, setkeyOptional] = useState();
+  let [primaryGenre, setprimaryGenre] = useState();
+  let [type, setType] = useState();
+
 
   const Search = () => {
     let formData = new FormData();
-    formData.append('image',files);
-    formData.append('music',music);
+    formData.append('image', files);
+    formData.append('music', music);
     formData.append('trackTitle', trackTitle);
     formData.append('trackType', trackType);
     formData.append('bpm', bpm);
@@ -55,11 +55,11 @@ const BlogPost = () => {
           "Authorization": `Bearer ${token}`
         },
         data: formData,
-        }
-    ).then((response)=>{
-         console.log(response);
-    }).catch((err)=>{
-         console.log(err);
+      }
+    ).then((response) => {
+      console.log(response);
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
@@ -72,18 +72,20 @@ const BlogPost = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, mt: 5, width: '50ch' },        
+          '& .MuiTextField-root': { m: 1, mt: 5, width: '50ch' },
         }}
         noValidate
         autoComplete="off"
       >
-        <div style={{display:'flex-box'}}>
+        <div style={{ display: 'flex-box' }}>
           <TextField
             id="outlined-required"
             label="Track Title"
             onChange={(e) => settrackTitle(e.target.value)}
-            sx={{ backgroundColor: "white",
-            textColor: "red"}}
+            sx={{
+              backgroundColor: "white",
+              textColor: "red"
+            }}
           />
           <TextField
             id="outlined-required"
@@ -111,7 +113,30 @@ const BlogPost = () => {
             label="Type"
             onChange={(e) => setType(e.target.value)}
           />
-          <TextField
+          <Button
+            variant="contained"
+            component="label"
+          >
+            Upload Image
+            <input
+              type="file"
+              label='show'
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </Button>
+          <Button
+            variant="contained"
+            component="label"
+            sx={{ ml: 10 }}
+          >
+            Upload Song
+            <input
+              onChange={(e) => setMusic(e.target.files[0])}
+              type="file"
+              show
+            />
+          </Button>
+          {/* <TextField
             id="filled-search"
             type='file'
             // label="Song "
@@ -124,7 +149,7 @@ const BlogPost = () => {
             onChange={(e) => setImage(e.target.files[0])}
             variant="filled"
             type='file'
-          />
+          /> */}
           <Button
             onClick={Search}
             variant="contained"

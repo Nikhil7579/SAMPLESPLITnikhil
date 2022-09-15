@@ -42,9 +42,7 @@ const AdminlogIn = () => {
           const logintoken = response.data.token
                 localStorage.setItem('logintoken', logintoken)
                 if (response.status === 200) {
-                    setTimeout(() => {
                         window.location.href="/dashboard"
-                    }, 2000)
                 }
         })
         .catch((err) => {
@@ -57,7 +55,7 @@ const AdminlogIn = () => {
         <Box sx={{marginTop:"150px"}}>
             <Container component="main" maxWidth="xs">
         <Typography component="h1" variant="h5" align='center'>
-          LogIn
+         Admin LogIn
         </Typography>
         <form   noValidate onSubmit={submitup} style={{marginTop:'20px'}} >
           <Grid container spacing={2}>
