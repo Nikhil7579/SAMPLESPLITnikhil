@@ -18,10 +18,10 @@ export const useStyles = makeStyles((theme) => {
       width: "100%",
       minHeight: "100vh",
       height: "auto",
-      background: "#2F76DB",
+      background: "rgb(191,191,191)",
       boxSizing: "border-box",
       padding: "50px 24px 24px 270px",
-      marginTop:"-55px",
+      marginTop: "-55px",
       [theme.breakpoints.down("sm")]: {
         padding: "70px 24px 24px 24px",
       },
@@ -37,13 +37,13 @@ export const useStyles = makeStyles((theme) => {
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "space-between",
-      background: "#09143C",
+      background: "rgb(40,40,40)",
       color: "#4169e1",
     },
     brandBox: {
       display: "flex",
       flexFlow: "row wrap",
-     
+
     },
     dropdownlist: {
       maxWidth: "250px",
@@ -56,15 +56,16 @@ export const useStyles = makeStyles((theme) => {
     drawerPaper: {
       width: "250px",
       marginTop: "64px",
+      background: "rgb(40,40,40)",
       [theme.breakpoints.down("sm")]: {
         marginTop: "0px",
       },
     },
 
     navlink: {
-      color: blueGrey[700],
+      color: 'white',
       transition: "0.8s",
-      
+
       "&:hover  div": {
         color: blue["A400"],
       },
@@ -72,7 +73,7 @@ export const useStyles = makeStyles((theme) => {
     navButton: { width: "100%", textTransform: "capitalize" },
     selectedNav: {
       color: `${blue[800]} !important`,
-      marginTop:"0px",
+      marginTop: "0px",
       fontWeight: " bolder",
       " & div": {
         color: `${blue[800]} !important`,

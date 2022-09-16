@@ -32,7 +32,6 @@ export default function HearderComponent() {
       />
       <Box className={classes.wrapper}>
         <Switch>
-          <Route exact path='/' render={() => <Dashboard />} />
           <Route exact path='/dashboard' render={() => <Dashboard />} />
           <Route exact path='/upload' render={() => <UploadMusic />} />
           <Route exact path='/ViewMusic' render={() => <ViewMusic />} />

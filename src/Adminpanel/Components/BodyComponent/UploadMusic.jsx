@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import { useState } from "react";
 import axios from 'axios';
 import { Typography } from "@material-ui/core";
+import { inputLabelClasses } from "@mui/material/InputLabel";
+
 /* import { useStyles } from "../BodyComponent/BodyStyles"; */
 
 // import { PageHeader } from "../../Common/Components";
@@ -65,10 +67,7 @@ const BlogPost = () => {
 
   return (
     <>
-      <Typography
-        variant='h5' align="center">
-        Upload Music
-      </Typography>
+      <h1 style={{color:'white'}}>UPLOAD MUSIC</h1>
       <Box
         component="form"
         sx={{
@@ -82,36 +81,82 @@ const BlogPost = () => {
             id="outlined-required"
             label="Track Title"
             onChange={(e) => settrackTitle(e.target.value)}
-            sx={{
-              backgroundColor: "white",
-              textColor: "red"
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
             }}
           />
           <TextField
             id="outlined-required"
             label="Track Type"
             onChange={(e) => settrackType(e.target.value)}
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
+            }}
 
           />
           <TextField
             id="outlined-required"
             label="BPM(Beat per minute)"
             onChange={(e) => setbpm(e.target.value)}
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
+            }}
           />
           <TextField
             id="outlined-required"
             label="Key(Optional)"
             onChange={(e) => setkeyOptional(e.target.value)}
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
+            }}
           />
           <TextField
             id="outlined-required"
             label="Primary genre"
+            inputProps={{ style: { fontFamily: 'Arial', color: 'white' } }}
+
             onChange={(e) => setprimaryGenre(e.target.value)}
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
+            }}
           />
           <TextField
             id="outlined-required"
             label="Type"
             onChange={(e) => setType(e.target.value)}
+            InputLabelProps={{
+              sx: {
+                color: "black",
+                [`&.${inputLabelClasses.shrink}`]: {
+                  color: "white",
+                }
+              }
+            }}
           />
           <Button
             variant="contained"

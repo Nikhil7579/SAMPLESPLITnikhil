@@ -26,7 +26,7 @@ const AdminlogIn = () => {
     const LogInApi = () => {
       axios(
         {
-          url: "http://localhost:5001/api/user/login",
+          url: "http://localhost:5001/api/admin/login",
           method: "post",
           header: {
             'Content-Type': 'application/json'

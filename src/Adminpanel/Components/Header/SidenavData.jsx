@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import { NavLink, Redirect,Route } from "react-router-dom";
+import { NavLink, Redirect, Route } from "react-router-dom";
 import { useStyles } from "./HeaderStyle";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -18,12 +18,12 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 export default function SidenavData({ handleDrawerClose }) {
   const adminLogout = () => {
     localStorage.clear();
-      window.location.href="/adminlogin";
+    window.location.href = "/adminlogin";
 
   }
   const classes = useStyles();
   const listItemData = [
-    { label: "Dashboard", link: "/", icon: <DashboardIcon /> },
+    { label: "Dashboard", link: "/dashboard", icon: <DashboardIcon /> },
     { label: "Upload Music", link: "/upload", icon: <UploadFileIcon /> },
     { label: "ViewMusic", link: "/viewmusic", icon: <PostAddIcon /> },
     {
@@ -32,7 +32,7 @@ export default function SidenavData({ handleDrawerClose }) {
       icon: <AnalyticsIcon />,
     },
     { label: "Admin Details", link: "/admindetails", icon: <ExitToAppIcon /> },
-    { label: "Logout", link: "/", icon: <ExitToAppIcon onClick={adminLogout} /> },
+    { label: "Logout", link: "/dashboard", icon: <ExitToAppIcon onClick={adminLogout} /> },
   ];
 
   return (
@@ -50,7 +50,7 @@ export default function SidenavData({ handleDrawerClose }) {
             className={classes.navlink}
             activeClassName={classes.selectedNav}>
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText>{item.label}</ListItemText>
+            <ListItemText sx={{ mb: 5 }}>{item.label}</ListItemText>
           </ListItem>
         </Button>
       ))}

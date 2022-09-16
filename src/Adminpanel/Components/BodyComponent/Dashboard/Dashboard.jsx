@@ -76,25 +76,25 @@ export default function Dashboard() {
   ];
 
   //updating the graph
-/*   useEffect(() => {
-    if (!hasFetched) {
-      GraphData.map((item) =>
-        GraphComponent({
-          id: item.label,
-          data: item.data,
-          bgColor: item.bgColor,
-          brColor: item.brColor,
-        })
-      );
-      setHasFetched(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [DisplayData]); */
+  /*   useEffect(() => {
+      if (!hasFetched) {
+        GraphData.map((item) =>
+          GraphComponent({
+            id: item.label,
+            data: item.data,
+            bgColor: item.bgColor,
+            brColor: item.brColor,
+          })
+        );
+        setHasFetched(true);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [DisplayData]); */
 
   return (
     <Box mt={2}>
       {/* //title section  */}
-      <PageHeader label='Dashboard' title='Application Overview' />
+      <h1 style={{ color: 'white' }}>Dashboard</h1>
 
       {/* <Grid container spacing={1} className={classes.section}>
         {DisplayData.map((item, i) => (
