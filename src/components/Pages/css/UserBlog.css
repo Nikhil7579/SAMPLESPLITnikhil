@@ -1,0 +1,15 @@
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+ }
+.leftcolumn {   
+    float: left;
+    width: 75%;
+  }
+  .img {
+    width: 100%;
+    height: 400px;
+    /* padding: 20px; */
+  }
+  

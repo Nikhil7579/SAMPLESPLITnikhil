@@ -1,9 +1,7 @@
 import React, { Fragment } from "react";
 import {
   Avatar,
-  Badge,
   Button,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -11,7 +9,6 @@ import {
   Menu,
 } from "@material-ui/core";
 
-import NotificationsRoundedIcon from "@material-ui/icons/NotificationsRounded";
 import { useStyles } from "../HeaderStyle";
 
 export default function Notification() {

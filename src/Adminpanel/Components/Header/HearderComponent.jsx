@@ -10,6 +10,7 @@ import Dashboard from "../BodyComponent/Dashboard/Dashboard";
 import ViewMusic from "../BodyComponent/ViewMusic"
 import AdminDetails from "../BodyComponent/AdminDetails";
 import AdminlogIn from "../../adminlogin";
+import Blog from "../BodyComponent/Blog";
 
 export default function HearderComponent() {
   const classes = useStyles();
@@ -38,6 +39,7 @@ export default function HearderComponent() {
           <Route exact path='/analytics' render={() => <Analytics />} />
           <Route exact path='/admindetails' render={() => <AdminDetails />} />
           <Route exact path='/adminlogout' render={() => <AdminlogIn />} />
+          <Route exact path='/blog' render={() => <Blog />} />
         </Switch>
       </Box>
     </Fragment>

@@ -7,26 +7,10 @@ import axios from 'axios';
 import { Typography } from "@material-ui/core";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 
-/* import { useStyles } from "../BodyComponent/BodyStyles"; */
-
-// import { PageHeader } from "../../Common/Components";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import { GetPosts } from "../../Common/requestApi";
-// import { useStyles } from "./BodyStyles";
-
 const BlogPost = () => {
 
   let token = localStorage.getItem('logintoken')
 
-
-  // const [inputfield, setInputfield] = useState('')
-  // const [inputtype, setInputtype] = useState('')
-  // const [beat, setBeat] = useState('')
-  // const [key, setKey] = useState('')
-  // const [primary, setPrimary] = useState('')
-  // const [songtype, setSongtype] = useState('')
-  // const [image, setImage] = useState('')
-  /* const classes = useStyles(); */
   let [files, setImage] = useState(null);
   let [music, setMusic] = useState();
   let [trackTitle, settrackTitle] = useState();

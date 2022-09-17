@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import { NavLink, Redirect, Route } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useStyles } from "./HeaderStyle";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -32,7 +32,8 @@ export default function SidenavData({ handleDrawerClose }) {
       icon: <AnalyticsIcon />,
     },
     { label: "Admin Details", link: "/admindetails", icon: <ExitToAppIcon /> },
-    { label: "Logout", link: "/dashboard", icon: <ExitToAppIcon onClick={adminLogout} /> },
+    { label: "Blog", link: "/blog", icon: <ExitToAppIcon /> },
+    { label: "Logout", link: "/", icon: <ExitToAppIcon onClick={adminLogout} /> },
   ];
 
   return (
