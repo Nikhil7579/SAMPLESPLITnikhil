@@ -1,57 +1,240 @@
-import React , {useState} from 'react';
+// import React, { useState } from 'react';
+// import Button from "@material-ui/core/Button";
+// import TextField from "@material-ui/core/TextField";
+// import Link from "@material-ui/core/Link"
+// import Grid from "@material-ui/core/Grid";
+// import Box from "@material-ui/core/Box";
+// import Typography from "@material-ui/core/Typography";
+// import Container from "@material-ui/core/Container";
+// import axios from "axios";
+// import { Avatar } from '@material-ui/core';
+// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+// import { makeStyles } from '@material-ui/core';
+// import CssBaseline from "@material-ui/core/CssBaseline";
+
+
+// const AdminlogIn = () => {
+//   const useStyles = makeStyles(theme => ({
+//     "@global": {
+//       body: {
+//         backgroundColor: theme.palette.common.white
+//       }
+//     },
+//     paper: {
+//       marginTop: theme.spacing(8),
+//       display: "flex",
+//       flexDirection: "column",
+//       alignItems: "center"
+//     },
+//     avatar: {
+//       margin: theme.spacing(1),
+//       backgroundColor: theme.palette.secondary.main
+//     },
+//     form: {
+//       width: "100%", // Fix IE 11 issue.
+//       marginTop: theme.spacing(3)
+//     },
+//     submit: {
+//       margin: theme.spacing(3, 0, 2)
+//     }
+//   }));
+  
+//   const classes = useStyles();
+//   let [data, updateData] = useState({ email: '', password: '' });
+//   const displayup = (e) => {
+//     updateData({ ...data, [e.target.name]: e.target.value });
+//   };
+//   const submitup = (e) => {
+//     e.preventDefault();
+//     LogInApi();
+//   };
+//   const LogInApi = () => {
+//     axios(
+//       {
+//         url: "http://localhost:5001/api/admin/login",
+//         method: "post",
+//         header: {
+//           'Content-Type': 'application/json'
+//         },
+//         data: {
+//           email: data.email,
+//           password: data.password
+//         }
+//       }
+//     )
+//       .then((response) => {
+//         console.log(response);
+//         const logintoken = response.data.token
+//         localStorage.setItem('logintoken', logintoken)
+//         if (response.status === 200) {
+//           window.location.href = "/dashboard"
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+
+//       })
+//   }
+//   return (
+//     <>
+//         <Container component="main" maxWidth="xs">
+//       <CssBaseline />
+//           <Avatar className={classes.avatar}>
+//             <LockOutlinedIcon />
+//           </Avatar>
+//           <Typography component="h1" variant="h5" align='center'>
+//             Admin LogIn
+//           </Typography>
+//           <form noValidate onSubmit={submitup} style={{ marginTop: '20px' }} >
+//             <Grid container spacing={2}>
+//               <Grid item xs={12}>
+//                 <TextField
+//                   variant="outlined"
+//                   required
+//                   fullWidth
+//                   label="Email Address"
+//                   name="email"
+//                   autoComplete="email"
+//                   value={data.email}
+//                   onChange={displayup}
+
+//                 />
+//               </Grid>
+//               <Grid item xs={12}>
+//                 <TextField
+//                   variant="outlined"
+//                   required
+//                   fullWidth
+//                   name="password"
+//                   label="Password"
+//                   type="password"
+//                   autoComplete="current-password"
+//                   value={data.password}
+//                   onChange={displayup}
+
+
+//                 />
+//               </Grid>
+//               {/* <Grid item xs={12}>
+//               <FormControlLabel
+//                 control={<Checkbox value="allowExtraEmails" color="primary" />}
+//                 label="I want to receive inspiration, marketing promotions and updates via email."
+//               />
+//             </Grid> */}
+//             </Grid>
+//             <br />
+//             <Button
+//               type="submit"
+//               fullWidth
+//               variant="contained"
+//               color="primary"
+//             >
+//               LogIn
+//             </Button>
+//             <Grid container justify="flex-end">
+//               <Grid item>
+//                 <Link href="/usersignup" variant="body2">
+//                   Forgot Password?
+//                 </Link>
+//               </Grid>
+//             </Grid>
+//           </form>
+
+//         </Container>
+//     </>
+//   )
+// }
+// export default AdminlogIn;
+
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link"
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 
-const AdminlogIn = () => {
-    let [data, updateData] = useState({email: '', password: '' });
-    const displayup = (e) => {
-      updateData({ ...data, [e.target.name]: e.target.value });
-    };
-    const submitup = (e) => {
-      e.preventDefault();
-      LogInApi();
-    };
-    const LogInApi = () => {
-      axios(
-        {
-          url: "http://localhost:5001/api/admin/login",
-          method: "post",
-          header: {
-            'Content-Type': 'application/json'
-          },
-          data: {
-            email: data.email,
-            password: data.password
-          }
-        }
-      )
-        .then((response) => {
-          console.log(response);
-          const logintoken = response.data.token
-                localStorage.setItem('logintoken', logintoken)
-                if (response.status === 200) {
-                        window.location.href="/dashboard"
-                }
-        })
-        .catch((err) => {
-          console.log(err);
-  
-        })
+const useStyles = makeStyles(theme => ({
+  "@global": {
+    body: {
+      backgroundColor: theme.palette.common.white
     }
-    return(
-        <>
-        <Box sx={{marginTop:"150px"}}>
-            <Container component="main" maxWidth="xs">
-        <Typography component="h1" variant="h5" align='center'>
-         Admin LogIn
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}));
+
+export default function AdminlogIn() {
+  const classes = useStyles();
+  let [data, updateData] = useState({ email: '', password: '' });
+  const display = (e) => {
+    updateData({ ...data, [e.target.name]: e.target.value });
+  };
+  const submit = (e) => {
+    e.preventDefault();
+    AdminlogInApi();
+    // setformErrors(validate(data));
+    // setIsSubmit(true);
+  };
+  const AdminlogInApi = () => {
+    axios(
+      {
+        url: "http://localhost:5001/api/admin/login",
+        method: "post",
+        header: {
+          'Content-Type': 'application/json'
+        },
+        data: {
+          email: data.email,
+          password: data.password
+        }
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          const logintoken = response.data.token
+          console.log(response.data.token)
+          localStorage.setItem('logintoken', logintoken)
+            window.location.href="/dashboard";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+
+      })
+  }
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Admin LogIn
         </Typography>
-        <form   noValidate onSubmit={submitup} style={{marginTop:'20px'}} >
+        <form className={classes.form} onSubmit={submit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -62,8 +245,7 @@ const AdminlogIn = () => {
                 name="email"
                 autoComplete="email"
                 value={data.email}
-                onChange={displayup}
-
+                onChange={display}
               />
             </Grid>
             <Grid item xs={12}>
@@ -76,8 +258,7 @@ const AdminlogIn = () => {
                 type="password"
                 autoComplete="current-password"
                 value={data.password}
-                onChange={displayup}
-
+                onChange={display}
 
               />
             </Grid>
@@ -88,27 +269,18 @@ const AdminlogIn = () => {
               />
             </Grid> */}
           </Grid>
-          <br />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
+            className={classes.submit}
           >
-            LogIn
+            Login
           </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/usersignup" variant="body2">
-                Forgot Password?
-              </Link>
-            </Grid>
-          </Grid>
         </form>
+      </div>
 
     </Container>
-    </Box>
-        </>
-    )
+  );
 }
-export default AdminlogIn;

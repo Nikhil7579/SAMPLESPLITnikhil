@@ -94,7 +94,8 @@ export default function Dashboard() {
   return (
     <Box mt={2}>
       {/* //title section  */}
-      <h1 style={{ color: 'white' }}>Dashboard</h1>
+      <PageHeader  title='Dashboard' />
+      
 
       {/* <Grid container spacing={1} className={classes.section}>
         {DisplayData.map((item, i) => (

@@ -5,6 +5,7 @@ import { FormControlLabel } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { PageHeader } from '../../Common/Components';
 
 
 const Blog = () => {
@@ -40,7 +41,7 @@ const Blog = () => {
 
     return (
         <div className="App" style={{ marginTop: '20px' }}>
-            <Typography variant="h5">Blog</Typography>
+      <PageHeader  title='Blog' />
             <form >
                 <TextField
                     style={{ width: "200px", margin: "5px" }}
@@ -74,7 +75,7 @@ const Blog = () => {
 
                     /></Button ><br /><br /><br /><br />
                 <Button variant="contained" color="primary" onClick={BlogApi}>
-                    save
+                    Post
                 </Button>
             </form>
         </div>

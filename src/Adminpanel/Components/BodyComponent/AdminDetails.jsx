@@ -3,6 +3,8 @@ import { useState } from 'react'
 import '../BodyComponent/AdminDetails.css'
 import axios from 'axios';
 import { useEffect } from 'react';
+import { PageHeader } from '../../Common/Components';
+import { Box } from '@mui/material';
 
 export default function AdminDetails() {
   let token = localStorage.getItem("logintoken");
@@ -41,6 +43,9 @@ export default function AdminDetails() {
       })
       } */}
       {/* <h1> {data.email}</h1> */}
+      <Box mt={2}>
+        <PageHeader title='Admin Details' />
+      </Box>
       <div className="page-content page-container" id="page-content">
         <div className="padding">
           <div className="row container d-flex justify-content-center">
@@ -49,7 +54,7 @@ export default function AdminDetails() {
                 <div className="row m-l-0 m-r-0">
                   <div className="col-sm-4 bg-c-lite-green user-profile">
                     <div className="card-block text-center text-white">
-                      <div className="m-b-25">
+                      <div className="m-b-10">
                         <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
                       </div>
                       <h6 className="f-w-600">{data.name}</h6>

@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useStyles } from "./HeaderStyle";
 
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -16,11 +16,47 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export default function SidenavData({ handleDrawerClose }) {
+
   const adminLogout = () => {
     localStorage.clear();
     window.location.href = "/adminlogin";
-
   }
+    // let res = axios.delete("http://localhost:5001/api/admin/logOut");
+    // if(res.status===204)
+    // {
+    //   localStorage.clear();
+    //   window.location.href="/adminlogin"; 
+    //   console.log("success")
+    // }
+    // axios(
+    //   {
+    //     url: "http://localhost:5001/api/admin/logOut",
+    //     method: "delete",
+    //     headers: {
+    //       "Authorization": `Bearer ${token}`
+    //     }
+    //   }.then((Response) => {
+    //     if (Response.status === 200) {
+    //       localStorage.clear();
+    //       window.location.href = "/adminlogin";
+    //     }
+    //   }).catch((err) => {
+    //     console.log(err);
+    //   })
+    // )
+  //   const headers = { 
+  //     'Authorization': 'Bearer my-token',
+  //     'My-Custom-Header': 'foobar'
+  // };
+  // axios.delete('https://reqres.in/api/posts/1', { headers })
+  //     .then((response) => {
+  //       if(response.status===200)
+  //       {
+  //         localStorage.clear();
+  //         window.location.href="/adminlogin";
+  //       }
+  //     })
+  
   const classes = useStyles();
   const listItemData = [
     { label: "Dashboard", link: "/dashboard", icon: <DashboardIcon /> },

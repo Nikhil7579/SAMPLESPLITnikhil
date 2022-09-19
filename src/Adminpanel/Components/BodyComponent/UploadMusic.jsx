@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { Typography } from "@material-ui/core";
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import { PageHeader } from "../../Common/Components";
 
 const BlogPost = () => {
 
@@ -51,7 +52,10 @@ const BlogPost = () => {
 
   return (
     <>
-      <h1 style={{color:'white'}}>UPLOAD MUSIC</h1>
+      {/* <h1 style={{color:'white',marginTop:'10px'}}>Upload Music</h1> */}
+      <Box mt={2}>
+        <PageHeader title='Upload Music' />
+      </Box>
       <Box
         component="form"
         sx={{
@@ -60,6 +64,7 @@ const BlogPost = () => {
         noValidate
         autoComplete="off"
       >
+
         <div style={{ display: 'flex-box' }}>
           <TextField
             id="outlined-required"

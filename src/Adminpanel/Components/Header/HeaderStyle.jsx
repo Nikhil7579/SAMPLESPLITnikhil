@@ -22,6 +22,7 @@ export const useStyles = makeStyles((theme) => {
       boxSizing: "border-box",
       padding: "50px 24px 24px 270px",
       marginTop: "-55px",
+      fontStyle: 'proxima-nova',
       [theme.breakpoints.down("sm")]: {
         padding: "70px 24px 24px 24px",
       },
@@ -37,7 +38,7 @@ export const useStyles = makeStyles((theme) => {
       display: "flex",
       flexFlow: "row wrap",
       justifyContent: "space-between",
-      background: "rgb(40,40,40)",
+      background: "rgb(4,4,5)",
       color: "#4169e1",
     },
     brandBox: {

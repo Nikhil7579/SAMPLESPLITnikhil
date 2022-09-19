@@ -94,7 +94,7 @@ export default function Analytics() {
   return (
     <Box mt={2}>
       {/* //title section  */}
-      <PageHeader label='Dashboard' title='Application Overview' />
+      <PageHeader  title='Analytics' />
 
       {<Grid container spacing={1} className={classes.section}>
         {DisplayData.map((item, i) => (

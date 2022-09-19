@@ -13,6 +13,7 @@ import Usersignup from "../components/Pages/Auth/UsersignUp/usersignup.jsx";
 import UserLogIn from "../components/Pages/Auth/UselogIn/userlogin.jsx"
 import ProtectedRoute from "../Adminpanel/ProtectedRoute";
 import { Redirect } from "react-router-dom";
+import Dashboard from "../Adminpanel/Components/BodyComponent/Dashboard/Dashboard";
 
 const App = () => {
 
@@ -46,11 +47,11 @@ const App = () => {
                         <ProtectedRoute path="/dashboard" >
                             <Admin />
                         </ProtectedRoute>
-                        <Route exact path="/">
-                            <Redirect exact from="/dashboard" to="Admin" />
+                        <Route exact path="/dashboard">
+                            <Redirect exact from="/dashboard" to="dashboard" />
                         </Route>
                         <Route path="*">
-                            <Redirect from="/dashboard" to="Admin" />
+                            <Redirect from="/dashboard" to="dashboard" />
                         </Route>
                     </Switch>
                 </Router>
