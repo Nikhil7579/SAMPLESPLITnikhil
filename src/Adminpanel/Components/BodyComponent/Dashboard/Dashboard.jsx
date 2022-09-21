@@ -1,79 +1,67 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
 } from "@material-ui/core";
-import { blue, green, lightBlue, red, teal } from "@material-ui/core/colors";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import { useStyles } from "../BodyStyles";
-import GraphComponent from "../../../Common/GraphComponent";
 import BlogGraph from "./BlogGraph";
-import Section3 from "./Section3";
-import { fakeArrayGenrator } from "../../../Common/fakeDataGenetator";
 import { PageHeader } from "../../../Common/Components";
 
 export default function Dashboard() {
-  const classes = useStyles();
-  const [hasFetched, setHasFetched] = useState(false);
+  // const classes = useStyles();
+  // const [hasFetched, setHasFetched] = useState(false);
 
-  const DisplayData = [
-    {
-      label: "Post",
-      value: "2,390",
-      icon: <ArrowDropUpIcon />,
-      iconLabel: "7%",
-    },
-    {
-      label: "Pages",
-      value: "180",
-      icon: <ArrowDropUpIcon />,
-      iconLabel: "5.3%",
-    },
-    {
-      label: "New Visitor",
-      value: "450",
-      icon: <ArrowDropDownIcon />,
-      iconLabel: "4.1%",
-    },
-    {
-      label: "Total Visitor",
-      value: "37450",
-      icon: <ArrowDropDownIcon />,
-      iconLabel: "2.5%",
-    },
-  ];
+  // const DisplayData = [
+  //   {
+  //     label: "Post",
+  //     value: "2,390",
+  //     icon: <ArrowDropUpIcon />,
+  //     iconLabel: "7%",
+  //   },
+  //   {
+  //     label: "Pages",
+  //     value: "180",
+  //     icon: <ArrowDropUpIcon />,
+  //     iconLabel: "5.3%",
+  //   },
+  //   {
+  //     label: "New Visitor",
+  //     value: "450",
+  //     icon: <ArrowDropDownIcon />,
+  //     iconLabel: "4.1%",
+  //   },
+  //   {
+  //     label: "Total Visitor",
+  //     value: "37450",
+  //     icon: <ArrowDropDownIcon />,
+  //     iconLabel: "2.5%",
+  //   },
+  // ];
 
-  const GraphData = [
-    {
-      label: "Post",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: lightBlue[50],
-      brColor: blue["A200"],
-    },
-    {
-      label: "Pages",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: blue[50],
-      brColor: blue["A700"],
-    },
-    {
-      label: "New Visitor",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: green[50],
-      brColor: green["A400"],
-    },
-    {
-      label: "Total Visitor",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: teal[50],
-      brColor: teal["A400"],
-    },
-  ];
+  // const GraphData = [
+  //   {
+  //     label: "Post",
+  //     data: fakeArrayGenrator({ length: 10, digit: 100 }),
+  //     bgColor: lightBlue[50],
+  //     brColor: blue["A200"],
+  //   },
+  //   {
+  //     label: "Pages",
+  //     data: fakeArrayGenrator({ length: 10, digit: 100 }),
+  //     bgColor: blue[50],
+  //     brColor: blue["A700"],
+  //   },
+  //   {
+  //     label: "New Visitor",
+  //     data: fakeArrayGenrator({ length: 10, digit: 100 }),
+  //     bgColor: green[50],
+  //     brColor: green["A400"],
+  //   },
+  //   {
+  //     label: "Total Visitor",
+  //     data: fakeArrayGenrator({ length: 10, digit: 100 }),
+  //     bgColor: teal[50],
+  //     brColor: teal["A400"],
+  //   },
+  // ];
 
   //updating the graph
   /*   useEffect(() => {

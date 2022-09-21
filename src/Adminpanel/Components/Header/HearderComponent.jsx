@@ -9,7 +9,6 @@ import UploadMusic from "../BodyComponent/UploadMusic";
 import Dashboard from "../BodyComponent/Dashboard/Dashboard";
 import ViewMusic from "../BodyComponent/ViewMusic"
 import AdminDetails from "../BodyComponent/AdminDetails";
-import AdminlogIn from "../../adminlogin";
 import Blog from "../BodyComponent/Blog";
 
 export default function HearderComponent() {
@@ -38,7 +37,7 @@ export default function HearderComponent() {
           <Route exact path='/ViewMusic' render={() => <ViewMusic />} />
           <Route exact path='/analytics' render={() => <Analytics />} />
           <Route exact path='/admindetails' render={() => <AdminDetails />} />
-          <Route exact path='/adminlogout' render={() => <AdminlogIn />} />
+          {/* <Route exact path='/adminlogin' render={() => <AdminlogIn />} /> */}
           <Route exact path='/blog' render={() => <Blog />} />
         </Switch>
       </Box>

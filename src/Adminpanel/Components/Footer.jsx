@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import { red } from "@material-ui/core/colors";
 import { useStyles } from "./BodyComponent/BodyStyles";
 
 export default function Footer() {

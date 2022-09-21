@@ -31,7 +31,7 @@ const About = () => {
                             <div className="leftcolumn">
                                 <div className="card">
                                     <h2>{item.title}</h2>
-                                    <h5>{item.createTime}&nbsp;&nbsp;{item.createDate}</h5>
+                                    <h5>{item.CreateTime}&nbsp;&nbsp;{item.createDate}</h5>
                                     <img src={item.imageName} className="img" alt="" />
                                     {/* <p>Some text..</p> */}
                                     <p>{item.description}</p>

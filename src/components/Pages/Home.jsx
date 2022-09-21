@@ -17,8 +17,6 @@ import About from "./About";
 import Playlist from "../fragment/Playlist";
 import { Skeleton } from "@material-ui/lab";
 import UserBlog from './UserBlog';
-import UserLogOut from "./UserLogOut";
-import UserLogIn from "./Auth/UselogIn/userlogin";
 
 
 function getCurrPage(pathName) {

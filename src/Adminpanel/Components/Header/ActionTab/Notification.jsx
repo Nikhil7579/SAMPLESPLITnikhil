@@ -15,10 +15,10 @@ export default function Notification() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    console.log("handleClicked ", event.currentTarget);
-  };
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  //   console.log("handleClicked ", event.currentTarget);
+  // };
   const handleClose = () => {
     setAnchorEl(null);
   };

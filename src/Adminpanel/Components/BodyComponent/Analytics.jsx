@@ -12,8 +12,6 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import { useStyles } from "../BodyComponent/BodyStyles";
 import GraphComponent from "../../Common/GraphComponent";
-import BlogGraph from "../BodyComponent/Dashboard/BlogGraph";
-import Section3 from "../BodyComponent/Dashboard/Section3";
 import { fakeArrayGenrator } from "../../Common/fakeDataGenetator";
 import { PageHeader } from "../../Common/Components";
 

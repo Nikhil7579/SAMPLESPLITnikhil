@@ -1,26 +1,23 @@
 import React, { Fragment } from "react";
 import {
   Avatar,
-  Badge,
   Button,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Menu,
 } from "@material-ui/core";
-import ForumIcon from "@material-ui/icons/Forum";
 import { useStyles } from "../HeaderStyle";
 
 export default function Messages() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-    console.log("handleClicked ", event.currentTarget);
-  };
+  // const handleClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  //   console.log("handleClicked ", event.currentTarget);
+  // };
   const handleClose = () => {
     setAnchorEl(null);
   };

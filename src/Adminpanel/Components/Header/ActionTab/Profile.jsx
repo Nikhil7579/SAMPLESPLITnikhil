@@ -21,7 +21,7 @@ export default function Profile() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log("handleClicked ", event.currentTarget);
+    // console.log("handleClicked ", event.currentTarget);          
   };
   const handleClose = () => {
     setAnchorEl(null);

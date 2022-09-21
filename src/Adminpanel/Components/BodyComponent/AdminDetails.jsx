@@ -10,7 +10,9 @@ export default function AdminDetails() {
   let token = localStorage.getItem("logintoken");
 
   let [data, updatedata] = useState([]);
-
+  useEffect(() => {
+    AdminProfile();
+  }, []);
   const AdminProfile = () => {
     axios(
       {
@@ -22,19 +24,13 @@ export default function AdminDetails() {
       }
     ).then((response) => {
       // console.log(response.data)
+      console.log(response.data  )
       updatedata(response.data.getAdminData);
     })
       .catch((err) => {
         console.log(err);
       })
   }
-  useEffect(() => {
-    AdminProfile();
-  }, [])
-
-
-  { console.log(data) }
-
   return (
     <>
       {/* {data.map((item) => {
@@ -55,7 +51,7 @@ export default function AdminDetails() {
                   <div className="col-sm-4 bg-c-lite-green user-profile">
                     <div className="card-block text-center text-white">
                       <div className="m-b-10">
-                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
+                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="" />
                       </div>
                       <h6 className="f-w-600">{data.name}</h6>
                       <p>sample split</p>

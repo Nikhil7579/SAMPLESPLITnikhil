@@ -15,7 +15,7 @@ export default function GraphComponent({ id, data, bgColor, brColor }) {
           fill: true,
           borderColor: brColor,
           backgroundColor: bgColor,
-          tension: 0.5,
+          tension: 1,
         },
       ],
     },

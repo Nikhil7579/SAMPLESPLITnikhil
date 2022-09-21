@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import axios from 'axios';
-import { Typography } from "@material-ui/core";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import { PageHeader } from "../../Common/Components";
 
@@ -122,7 +121,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Primary genre"
-            inputProps={{ style: { fontFamily: 'Arial', color: 'white' } }}
+            // inputProps={{ style: { fontFamily: 'Arial', color: 'white' } }}
 
             onChange={(e) => setprimaryGenre(e.target.value)}
             InputLabelProps={{

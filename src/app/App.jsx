@@ -13,7 +13,6 @@ import Usersignup from "../components/Pages/Auth/UsersignUp/usersignup.jsx";
 import UserLogIn from "../components/Pages/Auth/UselogIn/userlogin.jsx"
 import ProtectedRoute from "../Adminpanel/ProtectedRoute";
 import { Redirect } from "react-router-dom";
-import Dashboard from "../Adminpanel/Components/BodyComponent/Dashboard/Dashboard";
 
 const App = () => {
 

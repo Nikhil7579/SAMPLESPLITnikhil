@@ -10,12 +10,14 @@ import { Avatar, Button } from "@material-ui/core";
 import { ThemeContext } from "../../api/Theme";
 import logo from '../assets/img/logoc.png'
 import LogoutIcon from '@mui/icons-material/Logout';
-import UserLogOut from "../Pages/UserLogOut";
+import { useHistory } from "react-router-dom";
 
 function Navigation() {
+    let history = useHistory();
     const userlogout = () => {
         localStorage.clear();
-        window.location.href = "/userlogin"
+        // window.location.href = "/userlogin"
+        history.push('/userlogin');
     }
 
     const [isLanguageListOpen, setLangList] = useState(false);
