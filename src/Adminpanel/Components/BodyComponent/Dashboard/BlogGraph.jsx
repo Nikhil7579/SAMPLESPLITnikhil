@@ -121,6 +121,7 @@ import React, { useEffect, useState } from "react";
 import { lineGraphComponent } from "../../../Common/GraphComponent";
 import { useStyles } from "../BodyStyles";
 import axios from 'axios'
+import { adminbargraph } from "../../../../api/config";
 
 const BlogGraph = () => {
   const classes = useStyles();
@@ -132,7 +133,7 @@ const BlogGraph = () => {
    const GraphAPI = () => {
     axios(
       {
-        url: "http://localhost:5001/api/admin/toptrackByDate",
+        url: `${adminbargraph}`,
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`

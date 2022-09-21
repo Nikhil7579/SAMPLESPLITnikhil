@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { adminlogin } from "../api/config";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -52,7 +53,7 @@ export default function AdminlogIn() {
     const AdminlogInApi = () => {
       axios(
         {
-          url: "http://localhost:5001/api/admin/login",
+          url: `${adminlogin}`,
           method: "post",
           header: {
             'Content-Type': 'application/json'

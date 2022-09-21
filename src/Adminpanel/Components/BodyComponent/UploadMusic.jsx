@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import { PageHeader } from "../../Common/Components";
+import { uploadmusic } from "../../../api/config";
 
 const BlogPost = () => {
 
@@ -35,7 +36,7 @@ const BlogPost = () => {
 
     axios(
       {
-        url: "http://localhost:5001/api/admin/audioUpload",
+        url: `${uploadmusic}`,
         method: "post",
         headers: {
           "Authorization": `Bearer ${token}`

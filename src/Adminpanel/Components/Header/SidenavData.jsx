@@ -15,6 +15,7 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import axios from "axios";
+import { adminlogout } from "../../../api/config";
 
 export default function SidenavData({ handleDrawerClose }) {
 
@@ -26,7 +27,7 @@ export default function SidenavData({ handleDrawerClose }) {
     const hello = (token) => {
       axios(
         {
-          url: "http://localhost:5001/api/admin/logOut",
+          url: `${adminlogout}`,
           method: "delete",
           headers: {
                   "Authorization": `Bearer ${token}`

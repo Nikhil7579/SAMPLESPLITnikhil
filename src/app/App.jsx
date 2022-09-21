@@ -10,7 +10,7 @@ import { setPlaylist } from "../actions/actions";
 import Admin from "../Adminpanel/Admin";
 import AdminlogIn from "../Adminpanel/adminlogin";
 import Usersignup from "../components/Pages/Auth/UsersignUp/usersignup.jsx";
-import UserLogIn from "../components/Pages/Auth/UselogIn/userlogin.jsx"
+import UserLogIn from "../components/Pages/Auth/UserlogIn/userlogin.jsx"
 import ProtectedRoute from "../Adminpanel/ProtectedRoute";
 import { Redirect } from "react-router-dom";
 

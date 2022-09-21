@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { PageHeader } from '../../Common/Components';
+import { adminblog } from '../../../api/config';
 
 
 const Blog = () => {
@@ -21,7 +22,7 @@ const Blog = () => {
 
         axios(
             {
-                url: "http://localhost:5001/api/admin/createBlog",
+                url: `${adminblog}`,
                 method: "post",
                 headers: {
                     "Authorization": `Bearer ${token}`

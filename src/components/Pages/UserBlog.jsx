@@ -5,6 +5,7 @@ import './css/UserBlog.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import {userblog} from "../../api/config"
 
 
 const About = () => {
@@ -13,7 +14,7 @@ const About = () => {
     let [Blog, SetBlog] = useState([]);
 
     async function BlogApi() {
-        let response = await axios.get("http://localhost:5001/api/user/getBloges");
+        let response = await axios.get(`${userblog}`);
         SetBlog(response.data.findBlog);
         console.log(response.data.findBlog);
 

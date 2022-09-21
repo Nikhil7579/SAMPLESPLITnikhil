@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { PageHeader } from '../../Common/Components';
 import { Box } from '@mui/material';
+import { adminprofile } from '../../../api/config';
 
 export default function AdminDetails() {
   let token = localStorage.getItem("logintoken");
@@ -16,7 +17,7 @@ export default function AdminDetails() {
   const AdminProfile = () => {
     axios(
       {
-        url: "http://localhost:5001/api/admin/getAdminProfile",
+        url: `${adminprofile}`,
         method: "get",
         headers: {
           "Authorization": `Bearer ${token}`
