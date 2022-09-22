@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/About.scss';
-import Container from "../fragment/Container";
-import Attribution from "../fragment/Attribution";
+import Container from "../components/fragment/Container";
+import Attribution from "../components/fragment/Attribution";
 
 const About = () => {
     return (

@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './css/Search.scss';
-import Container from "../fragment/Container";
+import Container from "../components/fragment/Container";
 import {useSelector} from "react-redux";
-import MusicCard from "../fragment/MusicCard";
-import SearchMusic from "../assets/img/searchMusic.svg";
-import SearchMusicMp3 from "../assets/img/searchMusicMp3.svg";
-import SearchMusicDisc from "../assets/img/searchMusicDisc.svg";
-import ArrowUp from '../assets/img/left.svg';
+import MusicCard from "../components/fragment/MusicCard";
+import SearchMusic from "../components/assets/img/searchMusic.svg";
+import SearchMusicMp3 from "../components/assets/img/searchMusicMp3.svg";
+import SearchMusicDisc from "../components/assets/img/searchMusicDisc.svg";
+import ArrowUp from '../components/assets/img/left.svg';
 
 const Search = () => {
     const {playlists, search} = useSelector(state => state.musicReducer);

@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import './css/Profile.scss';
 import {Avatar} from "@material-ui/core";
 import {useSelector} from "react-redux";
-import MusicCard from "../fragment/MusicCard";
-import Container from "../fragment/Container";
+import MusicCard from "../components/fragment/MusicCard";
+import Container from "../components/fragment/Container";
 import Grade from 'grade-js';
-import SideBarOptions from "../fragment/SideBarOptions";
+import SideBarOptions from "../components/fragment/SideBarOptions";
 import {PlaylistPlay} from "@material-ui/icons";
 
 function Profile() {
@@ -36,7 +36,7 @@ function Profile() {
         <Container>
             <div className={"Profile"}>
                 <div className="top-profile">
-                    <Avatar variant={"rounded"} src={require("../assets/img/avatar2.jpg").default}
+                    <Avatar variant={"rounded"} src={require("../components/assets/img/avatar2.jpg").default}
                             style={{width: "150px", height: "150px"}}>
                         VS
                     </Avatar>

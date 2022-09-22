@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import './App.scss';
-import Home from "../components/Pages/Home.jsx";
+import Home from "../Pages/Home.jsx";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from "../components/Pages/Login";
+import Login from "../Pages/Login";
 import { ThemeContext, themes } from "../api/Theme";
 import musicDB from "../db/music";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlaylist } from "../actions/actions";
 import Admin from "../Adminpanel/Admin";
 import AdminlogIn from "../Adminpanel/adminlogin";
-import Usersignup from "../components/Pages/Auth/UsersignUp/usersignup.jsx";
-import UserLogIn from "../components/Pages/Auth/UserlogIn/userlogin.jsx"
+import Usersignup from "../Pages/Auth/UsersignUp/usersignup.jsx";
+import UserLogIn from "../Pages/Auth/UserlogIn/userlogin.jsx"
 import ProtectedRoute from "../Adminpanel/ProtectedRoute";
 import { Redirect } from "react-router-dom";
 

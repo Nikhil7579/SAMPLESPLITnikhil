@@ -1,11 +1,11 @@
 import React from 'react';
 import './css/About.scss';
-import Container from "../fragment/Container";
+import Container from "../components/fragment/Container";
 import './css/UserBlog.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import {userblog} from "../../api/config"
+import {userblog} from "../api/config"
 
 
 const About = () => {

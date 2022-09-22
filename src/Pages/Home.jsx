@@ -1,22 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import './css/Home.scss';
-import Navigation from "../fragment/Navigation";
-import MobileTopNavigation from "../fragment/MobileTopNavigation";
-import SideBar from "../fragment/SideBar";
-import FooterMusicPlayer from "../fragment/FooterMusicPlayer";
-import BottomNavigationMobile from "../fragment/BottomNavigationMobile";
-import MusicCardContainer from "../fragment/MusicCardContainer";
+import Navigation from "../components/fragment/Navigation";
+import MobileTopNavigation from "../components/fragment/MobileTopNavigation";
+import SideBar from "../components/fragment/SideBar";
+import FooterMusicPlayer from "../components/fragment/FooterMusicPlayer";
+import BottomNavigationMobile from "../components/fragment/BottomNavigationMobile";
+import MusicCardContainer from "../components/fragment/MusicCardContainer";
 import { useSelector } from "react-redux";
-import { ThemeContext } from "../../api/Theme";
+import { ThemeContext } from "../api/Theme";
 import Profile from "./Profile";
-import AddMusic from "../fragment/AddMusic";
-import FooterSelectMusic from "../fragment/FooterSelectMusic";
-import CurrentPlayingLarge from "../fragment/CurrentPlayingLarge";
+import AddMusic from "../components/fragment/AddMusic";
+import FooterSelectMusic from "../components/fragment/FooterSelectMusic";
+import CurrentPlayingLarge from "../components/fragment/CurrentPlayingLarge";
 import Search from "./Search";
 import About from "./About";
-import Playlist from "../fragment/Playlist";
+import Playlist from "../components/fragment/Playlist";
 import { Skeleton } from "@material-ui/lab";
 import UserBlog from './UserBlog';
+import Splitsongs from "./Splitsongs";
+import Freestem from "./Freestem";
+import Contact from "./Contact";
 
 
 function getCurrPage(pathName) {
@@ -33,6 +36,12 @@ function getCurrPage(pathName) {
             return <About />
         case "/home/blog":
             return <UserBlog />
+        case "/home/splitSongs":
+            return <Splitsongs />
+        case"/home/freestem":
+            return <Freestem/>  
+        case"/home/contact":
+            return <Contact/>             
         default:
             if (pathName.startsWith("/home/playlist/")) {
                 return <Playlist />
