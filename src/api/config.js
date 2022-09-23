@@ -14,3 +14,4 @@ export const adminlogout = `http://localhost:5001/api/admin/logOut`;
 export const userblog = `http://localhost:5001/api/user/getBloges`;
 export const userlogin = `http://localhost:5001/api/user/login`;
 export const usersignup = `http://localhost:5001/api/user/singup`;
+export const categoryMusic =`http://localhost:5001/api/user/getSongByTracktype`
