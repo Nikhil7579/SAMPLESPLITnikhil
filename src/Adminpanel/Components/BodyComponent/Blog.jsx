@@ -31,6 +31,10 @@ const Blog = () => {
             }
         ).then((response) => {
             console.log(response);
+            setTitle("");
+            setDescription("");
+            setImage(null);
+
         }).catch((err) => {
             console.log(err);
         })
@@ -46,6 +50,7 @@ const Blog = () => {
                     type="text"
                     label="Title"
                     variant="outlined"
+                    value={title}
                     onChange={(e) => setTitle(e.target.value)}
 
                 /><br />
@@ -56,6 +61,7 @@ const Blog = () => {
                     label="Content"
                     variant="outlined"
                     multiline
+                    value={description}
                     rows={10}
                     onChange={(e) => setDescription(e.target.value)}
 

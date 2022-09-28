@@ -59,26 +59,57 @@ const url = categoryMusic;
              </div>
        </div>
 
-       {
-          music.map((value,index)=>{
-                console.log(value);
-               return(
-                     <>
-                     <div style={{margin:'20px 0px 0px 350px'}}>
-                        
-                         <h4>{value.trackTitle}</h4> 
-                         <h4>{value.tracktype}</h4>
-                         <h4>{value.bpm} <label htmlFor="bpm">Bpm</label></h4> 
-                         <img src={value.imageName} alt="no img" style={{height:'70px', width:'70px'}} />
-                         <audio controls >
-                           <source  src={value.music} type="audio/ogg"/>  
-                         </audio> 
-                         {/* <Link to={value.music} download='value.music' target='_blank'> Download</Link>   */} 
-                     </div>
-                     </>    
-               );
-          })
-       }
+       <div style={{ overflow: 'hidden' }}>
+        {music.map((value, index) => {
+          return (
+            <>
+              <div style={{ width: '100%', height: '55px', background: 'white', margin: '10px',marginLeft:"100px", float: 'left' }}>
+                <div>
+                  <img src={value.imageName} alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
+                </div>
+                <div style={{ height: '100px', float: 'left' }}>
+                  <audio controls>
+                    <source src={value.music} type="audio/ogg" />
+                  </audio>
+                </div >
+                <div style={{ float: 'left', textAlign: 'center', width: '200px', height: '55px' }}>
+                  <h5>{value.trackTitle}</h5>
+                  <p>{value.trackType}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                  <h5>{value.bpm}</h5>
+                  <p>{value.keyOptional}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                  <h5>{value.primaryGenre}</h5>
+                  <p>{value.type}</p>
+                </div>
+                {/* <Button variant="contained" onClick={async () => {
+                  let res = await axios.delete(`${deletemusic}${songs.id}`, {
+                    headers: {
+                      "Authorization": `Bearer ${token}`
+                    }
+                  });
+                  console.log(res);
+                  // if(res.status===204)
+                  // {
+                  //   alert("Music Deleted Successfully");
+                  // }
+                }}>DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; */}
+                {/* <button type="button"
+                  className="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" 
+                  onClick={()=>{
+                    setedit(songs.id)
+                  }}
+                  data-bs-whatever="@getbootstrap">EDIT</button> */}
+              </div>
+            </>
+          )
+        })}
+      </div>
+          
     </>
   )
 }

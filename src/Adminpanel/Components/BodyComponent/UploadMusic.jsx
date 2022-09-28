@@ -45,6 +45,14 @@ const BlogPost = () => {
       }
     ).then((response) => {
       console.log(response);
+      setImage("");
+      setMusic("");
+      settrackTitle("");
+      settrackType("");
+      setbpm("");
+      setkeyOptional("");
+      setprimaryGenre("");
+      setType("");
     }).catch((err) => {
       console.log(err);
     })
@@ -69,6 +77,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Track Title"
+            value={trackTitle}
             onChange={(e) => settrackTitle(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -82,6 +91,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Track Type"
+            value={trackType}
             onChange={(e) => settrackType(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -96,6 +106,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="BPM(Beat per minute)"
+            value={bpm}
             onChange={(e) => setbpm(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -109,6 +120,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Key(Optional)"
+            value={keyOptional}
             onChange={(e) => setkeyOptional(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -123,7 +135,7 @@ const BlogPost = () => {
             id="outlined-required"
             label="Primary genre"
             // inputProps={{ style: { fontFamily: 'Arial', color: 'white' } }}
-
+            value={primaryGenre}
             onChange={(e) => setprimaryGenre(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -137,6 +149,7 @@ const BlogPost = () => {
           <TextField
             id="outlined-required"
             label="Type"
+            value={type}
             onChange={(e) => setType(e.target.value)}
             InputLabelProps={{
               sx: {

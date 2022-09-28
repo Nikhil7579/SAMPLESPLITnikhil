@@ -132,3 +132,9 @@ h6 {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+audio::-webkit-media-controls-play-button,
+     audio::-webkit-media-controls-panel {
+     background-color:white;
+     border: none;
+    color: #000;
+     }

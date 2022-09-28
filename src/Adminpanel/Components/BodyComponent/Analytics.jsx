@@ -20,18 +20,18 @@ export default function Analytics() {
   const [hasFetched, setHasFetched] = useState(false);
 
   const DisplayData = [
-    {
-      label: "Post",
-      value: "2,390",
-      icon: <ArrowDropUpIcon />,
-      iconLabel: "7%",
-    },
-    {
-      label: "Pages",
-      value: "180",
-      icon: <ArrowDropUpIcon />,
-      iconLabel: "5.3%",
-    },
+    // {
+    //   label: "Post",
+    //   value: "2,390",
+    //   icon: <ArrowDropUpIcon />,
+    //   iconLabel: "7%",
+    // },
+    // {
+    //   label: "Pages",
+    //   value: "180",
+    //   icon: <ArrowDropUpIcon />,
+    //   iconLabel: "5.3%",
+    // },
     {
       label: "New Visitor",
       value: "450",
@@ -47,18 +47,18 @@ export default function Analytics() {
   ];
 
   const GraphData = [
-    {
-      label: "Post",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: lightBlue[50],
-      brColor: blue["A200"],
-    },
-    {
-      label: "Pages",
-      data: fakeArrayGenrator({ length: 10, digit: 100 }),
-      bgColor: blue[50],
-      brColor: blue["A700"],
-    },
+    // {
+    //   label: "Post",
+    //   data: fakeArrayGenrator({ length: 10, digit: 100 }),
+    //   bgColor: lightBlue[50],
+    //   brColor: blue["A200"],
+    // },
+    // {
+    //   label: "Pages",
+    //   data: fakeArrayGenrator({ length: 10, digit: 100 }),
+    //   bgColor: blue[50],
+    //   brColor: blue["A700"],
+    // },
     {
       label: "New Visitor",
       data: fakeArrayGenrator({ length: 10, digit: 100 }),

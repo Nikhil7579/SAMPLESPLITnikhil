@@ -7,6 +7,11 @@ export const adminprofile = `http://localhost:5001/api/admin/getAdminProfile`;
 export const uploadmusic = `http://localhost:5001/api/admin/audioUpload`;
 export const adminblog = `http://localhost:5001/api/admin/createBlog`;
 export const adminlogout = `http://localhost:5001/api/admin/logOut`;
+export const viewmusic = `http://localhost:5001/api/admin/getAllAudio`;
+export const deletemusic = `http://localhost:5001/api/admin/deleteAudio/`;
+export const editmusic = `http://localhost:5001/api/admin/editAudio/`;
+export const updatemusic = `http://localhost:5001/api/admin/updateAudioById/`;
+export const admindetailsedit = `http://localhost:5001/api/admin/updateProfile`;
 
 
 
@@ -14,4 +19,4 @@ export const adminlogout = `http://localhost:5001/api/admin/logOut`;
 export const userblog = `http://localhost:5001/api/user/getBloges`;
 export const userlogin = `http://localhost:5001/api/user/login`;
 export const usersignup = `http://localhost:5001/api/user/singup`;
-export const categoryMusic =`http://localhost:5001/api/user/getSongByTracktype`
+export const categoryMusic =`http://localhost:5001/api/user/getSongByTracktype`;
