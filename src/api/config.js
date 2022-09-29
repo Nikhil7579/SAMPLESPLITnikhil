@@ -12,6 +12,8 @@ export const deletemusic = `http://localhost:5001/api/admin/deleteAudio/`;
 export const editmusic = `http://localhost:5001/api/admin/editAudio/`;
 export const updatemusic = `http://localhost:5001/api/admin/updateAudioById/`;
 export const admindetailsedit = `http://localhost:5001/api/admin/updateProfile`;
+export const toptracks = `http://localhost:5001/api/admin/topTrack`;
+export const topfans = `http://localhost:5001/api/admin/getTopFans`;
 
 
 
