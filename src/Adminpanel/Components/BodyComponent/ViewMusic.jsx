@@ -26,11 +26,25 @@ import { PageHeader } from "../../Common/Components";
 import { Button } from "@mui/material";
 import './Viewmusic.css'
 import { useHistory, useParams } from "react-router-dom";
+import { Grid } from "@mui/material"
+import { FormControl } from "@mui/material";
+import { MenuItem } from "@mui/material";
+import { IconButton, Select } from "@material-ui/core";
+import { InputLabel } from "@material-ui/core";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import PaidIcon from '@mui/icons-material/Paid';
 import { deletemusic, editmusic, updatemusic, viewmusic } from "../../../api/config";
 // import "./music.js"
 
 
 const ViewMusic = () => {
+
+  const hover = {
+    cursor: 'pointer'
+  }
+
+
   let [viewMusic, setViewMusicdetails] = useState([]);
   // let [songsedit, setsongsedit] = useState([]);
   let [imageName, setImage] = useState(null);
@@ -41,7 +55,9 @@ const ViewMusic = () => {
   let [keyOptional, setkeyOptional] = useState('');
   let [primaryGenre, setprimaryGenre] = useState('');
   let [type, setType] = useState('');
-  let [updatingID,setId] = useState("");
+  let [updatingID, setId] = useState("");
+  let [songss, setsongstype] = useState('');
+
   let token = localStorage.getItem("logintoken")
   const setedit = (id) => {
     console.log(id)
@@ -75,13 +91,14 @@ const ViewMusic = () => {
     })
     // res 
   }
-useEffect(()=>{
-    app();
-}, [])
-    const app =() =>{
-      axios(
+  // useEffect(() => {
+  //   app("Default");
+  // }, [])
+  const caturl = viewmusic;
+  const app = (c) => {
+    axios(
       {
-        url: `${viewmusic}`,
+        url: `${caturl}?filterkey=${c}`,
         method: "get",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -95,88 +112,13 @@ useEffect(()=>{
       console.log(err);
     })
   }
-  //  useEffect(()=>{
-  //   show();
-  //  },[])
-  // const display = (e) => {
-  //   e.preventDefault();
-  //   setsongsedit({ ...songsedit, [e.target.name]: e.target.value })
-  // }
-  // const submit = (id,e) => {
-  //   e.preventDefault();
-  //   let formData = new FormData();
-  //   formData.append('image', files);
-  //   formData.append('music', music);
-  //   formData.append('trackTitle', trackTitle);
-  //   formData.append('trackType', trackType);
-  //   formData.append('bpm', bpm);
-  //   formData.append('keyOptional', keyOptional);
-  //   formData.append('primaryGenre', primaryGenre);
-  //   formData.append('type', type);
-  //   console.log(id);
-  //   axios(
-  //     {
-  //       url: `${updatemusic}${id}`,
-  //       method: "put",
-  //       headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //         "Authorization": `Bearer ${token}`
-  //       },
-  //       data: formData,
-
-  //     }
-  //   ).then((response) => {
-  //     console.log(response);
-  //     // setImage("");
-  //     // setMusic("");
-  //     // settrackTitle("");
-  //     // settrackType("");
-  //     // setbpm("");
-  //     // setkeyOptional("");
-  //     // setprimaryGenre("");
-  //     // setType("");
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-  // const submit = (event) => {
-  //   event.preventDefault()
-  //   let formData = new FormData();
-  //   console.log(imageName,music,trackTitle, trackType, bpm,keyOptional, primaryGenre, type,updatingID)
-  //   formData.append('image', imageName);
-  //   formData.append('music', music);
-  //   formData.append('trackTitle', trackTitle);
-  //   formData.append('trackType', trackType);
-  //   formData.append('bpm', bpm);
-  //   formData.append('keyOptional', keyOptional);
-  //   formData.append('primaryGenre', primaryGenre);
-  //   formData.append('type', type);
-
-  //   // console.log(id);
-  //   //  Simple PUT request with a JSON body using fetch
-  //   const requestOptions = {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       "Authorization": `Bearer ${token}`
-  //     },
-  //     // data: formData ,
-  //     body: formData
-      
-  //   };
-  //   fetch(`http://localhost:5001/api/admin/updateAudioById/${updatingID}`, requestOptions)
-  //     .then((response) => {
-  //       response.json();
-  //       console.log(response);
-  //     }).catch((err) => {
-  //       console.log(err);
-  //     })
-  //   // .then(data => this.setState({ postId: data.id }));
-  // }
- const submit=(event)=> {
-  event.preventDefault()
+  useEffect(() => {
+    app('');
+  }, [])
+  const submit = (event) => {
+    event.preventDefault()
     let formData = new FormData();
-    console.log(imageName,music,trackTitle, trackType, bpm,keyOptional, primaryGenre, type,updatingID)
+    console.log(imageName, music, trackTitle, trackType, bpm, keyOptional, primaryGenre, type, updatingID)
     formData.append('image', imageName);
     formData.append('music', music);
     formData.append('trackTitle', trackTitle);
@@ -187,43 +129,68 @@ useEffect(()=>{
     formData.append('type', type);
 
     axios.put(`${updatemusic}${updatingID}`, formData, {
-      headers: { "Content-type": "multipart/form-data", "Authorization": `Bearer ${token}`
-     },
-    }).then((res)=>{
+      headers: {
+        "Content-type": "multipart/form-data", "Authorization": `Bearer ${token}`
+      },
+    }).then((res) => {
       console.log(res);
-    }).catch((err)=>{
+      app('');
+    }).catch((err) => {
       console.log(err)
-    })
-	// 	fetch(`${updatemusic}${updatingID}`, {
-	// 		method: 'PUT',
-	// 		body: JSON.stringify({
-	// 			// id: 1,
-	// 			title: 'update',
-	// 			body: formData,
-	// 			// userId: 1
-	// 		}),
-	// 		headers: {
-	// 		  "Content-type": "application/json; charset=UTF-8",
-  //       "Authorization": `Bearer ${token}`
-	// 		}
-	// 	}).then(response => {
-  //     console.log(response);
-	// 					return response.json()
-            
-	// 	}).then(json => {
-	// 		console.log(json)
-			
-	// 	}).catch(err =>{
+    });
+    // app();
+  }
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+    console.log(setAge)
+  };
+
+  // const songstype = (id) => {
+  //   console.log(id);
+  //   axios(
+  //     {
+  //       url: `http://localhost:5001/api/admin/changeStatus/${id}`,
+  //       method: 'post',
+  //       headers: {
+  //         "Authorization": `Bearer ${token}`
+  //       },
+  //     }
+  //   ).then((res) => {
+  //     console.log(res);
+
+  //   }).catch((err) => {
   //     console.log(err);
-  //   }
-  //     )
-  app();
-	}
+
+  //   })
+  // }
   // { console.log(FormData) }
   return (
     <>
       <Box mt={2}>
         <PageHeader title='View Music' />
+
+        <div style={{ maxWidth: 200 }}  >
+          <FormControl fullWidth >
+            <InputLabel id="demo-simple-select-label">Your Tracks</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              defaultValue={10}
+
+              // value={age}
+              label="Age"
+            // onChange={handleChange}
+            >
+              <MenuItem value={10} onClick={() => app('')} >Default</MenuItem>
+              <MenuItem value={20} onClick={() => app('MostPlayed')} >MostPlayed</MenuItem>
+              <MenuItem value={30} onClick={() => app('MostDiscuss')} >MostDiscussed</MenuItem>
+              <MenuItem value={40} onClick={() => app('Latest')} >Letest</MenuItem>
+              <MenuItem value={50} onClick={() => app('Oldest')} >Oldest</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
       </Box>
       <div style={{ overflow: 'hidden' }}>
         {viewMusic.map((songs, i) => {
@@ -238,7 +205,7 @@ useEffect(()=>{
                     <source src={songs.music} type="audio/ogg" />
                   </audio>
                 </div >
-                <div style={{ float: 'left', textAlign: 'center', width: '200px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '55px' }}>
                   <h5>{songs.trackTitle}</h5>
                   <p>{songs.trackType}</p>
                 </div>
@@ -250,84 +217,112 @@ useEffect(()=>{
                   <h5>{songs.primaryGenre}</h5>
                   <p>{songs.type}</p>
                 </div>
-                <Button variant="contained" onClick={async () => {
-                  let res = await axios.delete(`${deletemusic}${songs.id}`, {
-                    headers: {
-                      "Authorization": `Bearer ${token}`
-                    }
-                  });
-                  app();
-                  console.log(res);
-                  // if(res.status===204)
-                  // {
-                  //   alert("Music Deleted Successfully");
-                  // }
-                }}>DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button"
-                  className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={() => {
-                    setedit(songs.id)
-                  }}
-                  data-bs-whatever="@getbootstrap">EDIT</button>
-                  <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form onSubmit={submit} >
-              <div className="modal-body">
-                <div className="mb-3" >
-                  <label for="recipient-name" className="col-form-label">trackTitle</label>
-                  <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
-                    name="trackTitle" type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">trackType</label>
-                  <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">bpm</label>
-                  <input value={bpm} type="text" onChange={(e) => setbpm(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">keyOptional</label>
-                  <input value={keyOptional} type="text" onChange={(e) => setkeyOptional(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">primaryGenre</label>
-                  <input value={primaryGenre} type="text" onChange={(e) => setprimaryGenre(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">type</label>
-                  <input value={type} type="text" onChange={(e) => setType(e.target.value)} className="form-control" id="recipient-name" />
-                </div>
-                <div className="mb-3">
-                <label for="recipient-name" className="col-form-label">Image</label>
-                  <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
-                  <img src={imageName} alt="/" style={{ width: '100px', height: '100px' }} />
-                </div>
-                <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">Music</label>
-                  <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
-                  <audio controls >
-                    <source src={music} type="audio/ogg" />
-                  </audio>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" className="btn btn-primary"
-                  //  onClick={() => {
-                  //   submit(songs.id)
-                  // }}
-                  >Update</button>
-                </div>
-                {/* <div className="modal-footer">
+                <IconButton hover={hover}>
+                  <PaidIcon sx={{ color: '#1F2D5A' }}
+                  // onMouseOver={({ target }) => target.style.color = "blue"}
+                  // onMouseOut={({target})=>target.style.color="black"}
+                  // onMouseenter={({target})=>target.style.cursor="pointer"}
+
+
+                  ></PaidIcon></IconButton>
+                  <IconButton hover={hover} >
+                  <EditIcon
+                    sx={{ color: '#2F76DB' }}
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => {
+                      setedit(songs.id)
+                    }}
+                    data-bs-whatever="@getbootstrap"></EditIcon> </IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
+                <IconButton hover={hover} >
+                  <DeleteIcon sx={{ color: 'red' }} variant="contained" onClick={async () => {
+                    let res = await axios.delete(`${deletemusic}${songs.id}`, {
+                      headers: {
+                        "Authorization": `Bearer ${token}`
+                      }
+                    });
+                    app();
+                    console.log(res);
+                    // if(res.status===204)
+                    // {
+                    //   alert("Music Deleted Successfully");
+                    // }
+                  }}></DeleteIcon> </IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
+                {/* }}>DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; */}
+                {/* <DeleteIcon /> */}
+                
+                
+                <FormControl sx={{ m: 1, minWidth: 80 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={songs.type}
+                    onChange={handleChange}
+                    autoWidth
+                    label="Age"
+                  >
+                    <MenuItem value="public">public</MenuItem>
+                    <MenuItem value="private">private</MenuItem>
+                  </Select>
+                </FormControl>
+                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form onSubmit={submit} >
+                        <div className="modal-body">
+                          <div className="mb-3" >
+                            <label for="recipient-name" className="col-form-label">trackTitle</label>
+                            <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
+                              name="trackTitle" type="text" className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">trackType</label>
+                            <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">bpm</label>
+                            <input value={bpm} type="text" onChange={(e) => setbpm(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">keyOptional</label>
+                            <input value={keyOptional} type="text" onChange={(e) => setkeyOptional(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">primaryGenre</label>
+                            <input value={primaryGenre} type="text" onChange={(e) => setprimaryGenre(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">type</label>
+                            <input value={type} type="text" onChange={(e) => setType(e.target.value)} className="form-control" id="recipient-name" />
+                          </div>
+                          <div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">Image</label>
+                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
+                            <img src={imageName} alt="/" style={{ width: '100px', height: '100px' }} />
+                          </div>
+                          <div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">Music</label>
+                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
+                            <audio controls >
+                              <source src={music} type="audio/ogg" />
+                            </audio>
+                          </div>
+                          <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" className="btn btn-primary"
+                            //  onClick={() => {
+                            //   submit(songs.id)
+                            // }}
+                            >Update</button>
+                          </div>
+                          {/* <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" className="btn btn-primary">Update</button> */}
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </>
           )
@@ -381,10 +376,10 @@ useEffect(()=>{
                 {/* <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" className="btn btn-primary">Update</button> */}
-              {/* </div> */}
-            {/* // </form> */}
-          {/* // </div> */}
-        {/* // </div> */}
+      {/* </div> */}
+      {/* // </form> */}
+      {/* // </div> */}
+      {/* // </div> */}
       {/* </div> */}
       {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{marginTop:"20px"}}>
         <div className="modal-dialog">

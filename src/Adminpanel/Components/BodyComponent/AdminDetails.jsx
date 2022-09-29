@@ -12,8 +12,8 @@ export default function AdminDetails() {
   // let token = localStorage.getItem("logintoken");
   let [data, updatedata] = useState([]);
   // let [pdata, updatepdata] = useState([]);
-  let [name, setName] = useState();
-  let [email, setEmail] = useState();
+  let [name, setName] = useState('');
+  let [email, setEmail] = useState('');
   let token = localStorage.getItem("logintoken")
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function AdminDetails() {
         headers: {
           "Authorization": `Bearer ${token}`
         }
-      }
+      } 
     ).then((response) => {
       // console.log(response.data)
       console.log(response.data.getAdminData)

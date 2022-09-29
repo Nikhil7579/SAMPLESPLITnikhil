@@ -200,8 +200,8 @@ const Analytics = () => {
         {/* //title section  */}
         <PageHeader title='Analytics' />
       </Box>
-      <div style={{ background: 'white', width: "500px", height: '600px' }}>
-        <div style={{ background: 'gray' }}>
+      <div style={{ background: 'white', width: "500px", height: '650px' }}>
+        <div style={{ background: '#2F76DB' }}>
           <p style={{ color: 'white' }}><hr />&nbsp;&nbsp;TOP TRACKS<hr /></p>
         </div>
         <div>
@@ -217,7 +217,7 @@ const Analytics = () => {
             )
           })}
         </div><br /><br /><br /><br /><br />
-        <div style={{ background: 'gray' }}>
+        <div style={{ background: '#1F2D5A' }}>
           <p style={{ color: 'white' }}><hr />&nbsp;&nbsp;TOP FANS<hr /></p>
         </div>
         <div>
@@ -236,7 +236,7 @@ const Analytics = () => {
             )
           })}
         </div><br /><br /><br /><br /><br />
-        <div style={{ background: 'gray' }}>
+        <div style={{ background: '#2F76DB' }}>
           <p style={{ color: 'white' }}><hr />&nbsp;&nbsp;TOP COUNTRIES<hr /></p>
         </div>
         <div>
@@ -247,6 +247,8 @@ const Analytics = () => {
                   <Stack direction="row" style={{ marginLeft: '20px' }}>
                     <Avatar style={{ width: '100px', height: '100px', background: '#2F76DB', borderRadius: '0px' }} >{item.country}</Avatar>
                   </Stack>
+                  <p style={{ textAlign: "center" }}>&nbsp;&nbsp;&nbsp;&nbsp;{item.topuser}</p>
+
                 </div>
               </>
         )
