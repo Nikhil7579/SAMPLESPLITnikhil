@@ -31,10 +31,15 @@ import { FormControl } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { IconButton, Select } from "@material-ui/core";
 import { InputLabel } from "@material-ui/core";
+import { Fade } from "@mui/material";
+import { Backdrop } from "@material-ui/core";
+import { Modal } from "@mui/material";
+import { Typography } from "@mui/material";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import PaidIcon from '@mui/icons-material/Paid';
-import { deletemusic, editmusic, updatemusic, viewmusic } from "../../../api/config";
+import { addprice, changestatus, deletemusic, editmusic, updatemusic, viewmusic } from "../../../api/config";
 // import "./music.js"
 
 
@@ -42,6 +47,24 @@ const ViewMusic = () => {
 
   const hover = {
     cursor: 'pointer'
+  }
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'black',
+    color: 'white',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
   }
 
 
@@ -56,7 +79,7 @@ const ViewMusic = () => {
   let [primaryGenre, setprimaryGenre] = useState('');
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
-  let [songss, setsongstype] = useState([]);
+  let [price, setPrice] = useState();
 
   let token = localStorage.getItem("logintoken")
   const setedit = (id) => {
@@ -139,13 +162,13 @@ const ViewMusic = () => {
       console.log(err)
     });
     // app();
-  } 
+  }
 
   const songstype = (updatingID, c) => {
     console.log(updatingID);
     axios(
       {
-        url: `http://localhost:5001/api/admin/changeStatus/${updatingID}?type=${c}`,
+        url: `${changestatus}${updatingID}?type=${c}`,
         method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
@@ -162,6 +185,7 @@ const ViewMusic = () => {
   }
   return (
     <>
+      {/* Music List Data ..app ApI.. START */}
       <Box mt={2}>
         <PageHeader title='View Music' />
 
@@ -211,14 +235,56 @@ const ViewMusic = () => {
                   <h5>{songs.primaryGenre}</h5>
                   <p>{songs.type}</p>
                 </div>
-                <IconButton hover={hover}>
+                {/* <IconButton hover={hover}>
                   <PaidIcon sx={{ color: '#1F2D5A' }}
-                  // onMouseOver={({ target }) => target.style.color = "blue"}
+                    onClick={() =>
+                      setprice(songs.id)
+                    } */}
+                {/* // onMouseOver={({ target }) => target.style.color = "blue"}
                   // onMouseOut={({target})=>target.style.color="black"}
                   // onMouseenter={({target})=>target.style.cursor="pointer"}
 
 
-                  ></PaidIcon></IconButton>
+                  ></PaidIcon></IconButton> */}
+                {/* <IconButton hover={hover} >
+                  <PaidIcon
+                    sx={{ color: '#1F2D5A' }}
+                    onClick={() => console.log(songs.id)}
+                  >
+                  </PaidIcon>
+                </IconButton> */}
+                <IconButton>
+                  <PaidIcon data-bs-toggle="modal" 
+                  data-bs-target="#exampleModall" 
+                  data-bs-whatever="@mdo" 
+                  >
+                    Open modal for @mdo
+                    </PaidIcon>
+                  
+                </IconButton>
+                <div style={{marginTop:'100px'}} className="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">Add Price</h5>
+                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                          <form>
+                            <div className="mb-3">
+                              <label for="recipient-name" className="col-form-label">Price</label>
+                              <input type="number" className="form-control" id="recipient-name" />
+                            </div>
+                            <div className="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Add Price</button>
+                        </div>
+                          </form>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
                 <IconButton hover={hover} >
                   <EditIcon
                     sx={{ color: '#2F76DB' }}
@@ -254,12 +320,12 @@ const ViewMusic = () => {
                     autoWidth
                     label="Age"
                   >
-                    <MenuItem value="public" onClick={() => songstype(songs.id,'public')}>public</MenuItem>
-                    <MenuItem value="private" onClick={() => songstype(songs.id,'private')} >private</MenuItem>
+                    <MenuItem value="public" onClick={() => songstype(songs.id, 'public')}>public</MenuItem>
+                    <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
                   </Select>
                 </FormControl>
 
-                <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
+                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
                   <div className="modal-dialog">
                     <div className="modal-content">
                       <div className="modal-header">
