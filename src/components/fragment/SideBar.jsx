@@ -20,7 +20,7 @@ function SideBar() {
                 <SideBarOptions className={"lib-sub"} Icon={CreateIcon} href={"/home/blog"} title={"Blog"} />
                 <SideBarOptions className={"lib-sub"} Icon={CallIcon} href={"/home/contact"} title={"Contact us"} />
                 <SideBarOptions className={"lib-sub"} Icon={ExploreOutlined} href={"/home/about"} title={"About"} />
-                {/* <SideBarOptions className={"lib-sub"} Icon={SearchOutlined} href={"/home/search"} title={"Search"} /> */}
+                <SideBarOptions className={"lib-sub"} Icon={SearchOutlined} href={"/home/search"} title={"Search"} />
                 
                {/*  <SideBarOptions className={"lib-sub"} Icon={RateReviewIcon} href={"/home/splitSongs"} title={"Blog"} /> */}
                 {/*<SideBarOptions className={"lib-sub"} Icon={AlbumIcon} href={"/home/album"}  title={"Album"}/>

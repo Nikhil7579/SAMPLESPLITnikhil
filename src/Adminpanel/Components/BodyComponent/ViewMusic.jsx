@@ -56,7 +56,7 @@ const ViewMusic = () => {
   let [primaryGenre, setprimaryGenre] = useState('');
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
-  let [songss, setsongstype] = useState('');
+  let [songss, setsongstype] = useState([]);
 
   let token = localStorage.getItem("logintoken")
   const setedit = (id) => {
@@ -139,33 +139,27 @@ const ViewMusic = () => {
       console.log(err)
     });
     // app();
+  } 
+
+  const songstype = (updatingID, c) => {
+    console.log(updatingID);
+    axios(
+      {
+        url: `http://localhost:5001/api/admin/changeStatus/${updatingID}?type=${c}`,
+        method: 'get',
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      }
+    ).then((res) => {
+      console.log(res);
+      console.log(updatingID)
+      app();
+
+    }).catch((err) => {
+      console.log(err);
+    })
   }
-  const [age, setAge] = React.useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-    console.log(setAge)
-  };
-
-  // const songstype = (id) => {
-  //   console.log(id);
-  //   axios(
-  //     {
-  //       url: `http://localhost:5001/api/admin/changeStatus/${id}`,
-  //       method: 'post',
-  //       headers: {
-  //         "Authorization": `Bearer ${token}`
-  //       },
-  //     }
-  //   ).then((res) => {
-  //     console.log(res);
-
-  //   }).catch((err) => {
-  //     console.log(err);
-
-  //   })
-  // }
-  // { console.log(FormData) }
   return (
     <>
       <Box mt={2}>
@@ -201,7 +195,7 @@ const ViewMusic = () => {
                   <img src={songs.imageName} alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
                 </div>
                 <div style={{ height: '100px', float: 'left' }}>
-                  <audio controls>
+                  <audio controls controlsList="nodownload noplaybackrate ">
                     <source src={songs.music} type="audio/ogg" />
                   </audio>
                 </div >
@@ -225,7 +219,7 @@ const ViewMusic = () => {
 
 
                   ></PaidIcon></IconButton>
-                  <IconButton hover={hover} >
+                <IconButton hover={hover} >
                   <EditIcon
                     sx={{ color: '#2F76DB' }}
                     data-bs-toggle="modal"
@@ -250,22 +244,21 @@ const ViewMusic = () => {
                   }}></DeleteIcon> </IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
                 {/* }}>DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; */}
                 {/* <DeleteIcon /> */}
-                
-                
                 <FormControl sx={{ m: 1, minWidth: 80 }}>
                   <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
                   <Select
                     labelId="demo-simple-select-autowidth-label"
                     id="demo-simple-select-autowidth"
                     value={songs.type}
-                    onChange={handleChange}
+                    // onChange={handleChange}
                     autoWidth
                     label="Age"
                   >
-                    <MenuItem value="public">public</MenuItem>
-                    <MenuItem value="private">private</MenuItem>
+                    <MenuItem value="public" onClick={() => songstype(songs.id,'public')}>public</MenuItem>
+                    <MenuItem value="private" onClick={() => songstype(songs.id,'private')} >private</MenuItem>
                   </Select>
                 </FormControl>
+
                 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
                   <div className="modal-dialog">
                     <div className="modal-content">
