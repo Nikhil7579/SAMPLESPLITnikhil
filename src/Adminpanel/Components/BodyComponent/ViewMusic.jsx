@@ -79,7 +79,7 @@ const ViewMusic = () => {
   let [primaryGenre, setprimaryGenre] = useState('');
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
-  let [price, setPrice] = useState();
+  let [data, updatedata] = useState({ price:''});
 
   let token = localStorage.getItem("logintoken")
   const setedit = (id) => {
@@ -183,6 +183,31 @@ const ViewMusic = () => {
       console.log(err);
     })
   }
+  const show = (e) => {
+    updatedata({ ...data, [e.target.name]: e.target.value });
+  }
+  const pp = (id, e) => {
+    console.log(updatingID)
+    e.preventDefault()
+    axios(
+      {
+        url: `${addprice}${id}`,
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
+        },
+        data: {
+          price: data.price,
+        }
+      }
+    ).then((response) => {
+      console.log(response);
+      console.log(updatingID)
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <>
       {/* Music List Data ..app ApI.. START */}
@@ -235,32 +260,17 @@ const ViewMusic = () => {
                   <h5>{songs.primaryGenre}</h5>
                   <p>{songs.type}</p>
                 </div>
-                {/* <IconButton hover={hover}>
-                  <PaidIcon sx={{ color: '#1F2D5A' }}
-                    onClick={() =>
-                      setprice(songs.id)
-                    } */}
-                {/* // onMouseOver={({ target }) => target.style.color = "blue"}
-                  // onMouseOut={({target})=>target.style.color="black"}
-                  // onMouseenter={({target})=>target.style.cursor="pointer"}
 
-
-                  ></PaidIcon></IconButton> */}
-                {/* <IconButton hover={hover} >
-                  <PaidIcon
-                    sx={{ color: '#1F2D5A' }}
-                    onClick={() => console.log(songs.id)}
+                <IconButton>
+                  <PaidIcon data-bs-toggle="modal"
+                    data-bs-target="#exampleModall"
+                    data-bs-whatever="@mdo"
+                    onclick={songs.id}
+                  // onClick={()=> 
+                  // setprice(songs.id)}
                   >
                   </PaidIcon>
-                </IconButton> */}
-                <IconButton>
-                  <PaidIcon data-bs-toggle="modal" 
-                  data-bs-target="#exampleModall" 
-                  data-bs-whatever="@mdo" 
-                  >
-                    Open modal for @mdo
-                    </PaidIcon>
-                  
+                      
                 </IconButton>
                 <div style={{marginTop:'100px'}} className="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -269,19 +279,17 @@ const ViewMusic = () => {
                           <h5 className="modal-title" id="exampleModalLabel">Add Price</h5>
                           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
-                          <form>
+                          <form onSubmit={pp}>
+                           <div className="modal-body">
                             <div className="mb-3">
                               <label for="recipient-name" className="col-form-label">Price</label>
-                              <input type="number" className="form-control" id="recipient-name" />
+                              <input type="number" name="price" value={data.price} onChange={show} className="form-control" id="recipient-name" />
                             </div>
                             <div className="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Add Price</button>
+                          <button  className="btn btn-primary" type="submit" >Add Price</button>
                         </div>
-                          </form>
                         </div>
-                        
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -324,7 +332,28 @@ const ViewMusic = () => {
                     <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
                   </Select>
                 </FormControl>
-
+                {/* <div style={{ marginTop: '100px' }} className="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Add Price</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form onSubmit={pp}>
+                        <div className="modal-body">
+                          <div className="mb-3">
+                            <label for="recipient-name" className="col-form-label">Price</label>
+                            <input type="number" name="price" value={data.price} onChange={show} className="form-control" id="recipient-name" />
+                          </div>
+                          <div className="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Price</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div> */}
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
                   <div className="modal-dialog">
                     <div className="modal-content">
@@ -387,104 +416,6 @@ const ViewMusic = () => {
           )
         })}
       </div>
-      {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form >
-              <div className="modal-body">
-                <div className="mb-3" >
-                  <label for="recipient-name" className="col-form-label">trackTitle</label>
-                  <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
-                    name="trackTitle" type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">trackType</label>
-                  <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">bpm</label>
-                  <input value={bpm} type="text" onChange={(e) => setbpm(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">keyOptional</label>
-                  <input value={keyOptional} type="text" onChange={(e) => setkeyOptional(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">primaryGenre</label>
-                  <input value={primaryGenre} type="text" onChange={(e) => setprimaryGenre(e.target.value)} className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">type</label>
-                  <input value={type} type="text" onChange={(e) => setType(e.target.value)} className="form-control" id="recipient-name" />
-                </div>
-                <div className="mb-3">
-                <label className="custom-file-label" htmlFor="exampleInputFile">{files ? files.split('http://localhost:3000/public/uploads/') : "Choose File"}</label>
-                  <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
-                  <img src={files} alt="/" style={{ width: '100px', height: '100px' }} />
-                </div>
-                <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">Music</label>
-                  <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
-                  <audio controls >
-                    <source src={music} type="audio/ogg" />
-                  </audio>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" className="btn btn-primary" onClick={submit}>Update</button>
-                </div>
-                {/* <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Update</button> */}
-      {/* </div> */}
-      {/* // </form> */}
-      {/* // </div> */}
-      {/* // </div> */}
-      {/* </div> */}
-      {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{marginTop:"20px"}}>
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">TrackTitle</label>
-                  <input type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">trackType</label>
-                  <input type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">bpm</label>
-                  <input type="number" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">keyOptional</label>
-                  <input type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">primaryGenre</label>
-                  <input type="text" className="form-control" id="recipient-name" />
-                </div><div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">type</label>
-                  <input type="text" className="form-control" id="recipient-name" />
-                </div>
-                <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">Image</label>
-                  <input type="file" className="form-control" id="recipient-name" />
-                </div>
-                <div className="mb-3">
-                  <label for="recipient-name" className="col-form-label">Music</label>
-                  <input type="file" className="form-control" id="recipient-name" />
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Update</button>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
     </>
   )

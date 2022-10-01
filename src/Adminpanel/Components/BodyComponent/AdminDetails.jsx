@@ -5,17 +5,18 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { PageHeader } from '../../Common/Components';
 import { Box } from '@mui/material';
-import { admindetailsedit, adminprofile } from '../../../api/config';
+import { admindetailsedit, adminprofile, changepassword } from '../../../api/config';
 import { useHistory } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 export default function AdminDetails() {
-  // let token = localStorage.getItem("logintoken");
   let [data, updatedata] = useState([]);
-  // let [pdata, updatepdata] = useState([]);
-  let [name, setName] = useState('');
-  let [email, setEmail] = useState('');
+  let [pdata, updatepdata] = useState({ password: "", confirmPassword: "" });
   let token = localStorage.getItem("logintoken")
+  let history=useHistory();
 
+  console.log(token)
   useEffect(() => {
     AdminProfile();
   }, []);
@@ -27,93 +28,50 @@ export default function AdminDetails() {
         headers: {
           "Authorization": `Bearer ${token}`
         }
-      } 
+      }
     ).then((response) => {
       // console.log(response.data)
       console.log(response.data.getAdminData)
       updatedata(response.data.getAdminData);
-      // updatepdata(response.data.getAdminData);
-      let article = response.data.getAdminData;
-      setName(article.name);
-      setEmail(article.email);
-      // updatepdata(response.data.getAdminData);
     })
       .catch((err) => {
         console.log(err);
       })
   }
-  // const display = (e) => {
-  //   // e.preventDefault();
-  //   // e.persist(); 
-  //   updatedata({ ...data, [e.target.name]: e.target.value })
-
-  // }
-  // const submit =async(e)=>{
-  //     let options= { 
-  //       method : 'PUT',
-  //       headers : {
-  //         'Content-Type' : 'aplication/json',
-  //         "Authorization": `Bearer ${token}`
-  //       },
-  //       body: JSON.stringify(pdata)
-  //     }
-  //     e.preventDefault();
-  //     let res = await fetch(`${admindetailsedit}`,options)
-  //     console.log(res);
-  //     // if(res.status===200)
-  //     // {
-  //     //   history.push("/adminlogin");
-  //     // }
-  // }
-   const submit = (event) => {
-    event.preventDefault()
-    // let token = localStorage.getItem("logintoken")
-    console.log(token);
-    // let config = { headers: { "Authorization": `Bearer ${token}`} };
-    axios.put(`${admindetailsedit}`,{ 
-      headers: {
-         "Authorization" : ` Bearer ${token}`},
-   }).then((res)=>{
-      console.log(res);
-    }).catch((err)=>{
-      console.log(err)
-    })
-  }
-  const handleInput = (e) => {
-    console.log(e.target.name, " : ", e.target.value);
-    updatedata({ ...data, [e.target.name]: e.target.value });
+  const show = (e) => {
+    updatepdata({ ...pdata, [e.target.name]: e.target.value });
+    console.log(updatepdata)
   };
+  console.log(token);
+  const updateAdmin = (e) => {
+    e.preventDefault();
+    console.log(pdata.password)
+    console.log(pdata.confirmPassword)
+    axios(
+      {
+        url: `${changepassword}`,
+        method: "post",
+        data: {
+          password: pdata.password,
+          confirmPassword: pdata.confirmPassword
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token} `
+        }
+      }
+    ).then((res) => {
+      console.log(res);
+      localStorage.clear();
+      if(res.status===200)
+      {
+        window.location.href="/adminlogin";
 
-  // const submit = (event) =>
-  //   event.preventDefault();
-
-  // axios({
-  //   method: 'put',
-  //   url: `${admindetailsedit}`,
-  //   // data: {
-  //   //   title: 'Making PUT Requests with Axios',
-  //   //   status: 'published'
-  //   // },
-  //   headers: { "Authorization": ` Bearer ${token}` },
-  // }).then((res) => {
-  //   console.log(res);
-  // }).catch((err) => {
-  //   console.log(err)
-  // })
-
-  // Simple PUT request with a JSON body using fetch
-  // const requestOptions = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json',"Authorization": `Bearer ${token}` },
-  //     body: JSON.stringify({ title: 'React PUT Request Example' })
-  // };
-  // fetch(`${admindetailsedit}`, requestOptions)
-  //     .then((response) => {response.json();
-  //     console.log(response)
-  //   })
-  //     // .then(data => this.setState({ postId: data.id }));
-  //     .catch((err)=>{ console.log(err)})
-
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  };
   return (
     <>
       {/* {data.map((item) => {
@@ -144,35 +102,7 @@ export default function AdminDetails() {
                   <div className="col-sm-8">
                     <div className="card-block">
                       {/* <button className='btn btn-primary' style={{float:'right'}}>&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;</button> */}
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{ float: 'right' }} data-bs-whatever="@mdo">Edit</button>
-                      {/* <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog ">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form onSubmit={submit}>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Name</label>
-                                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} class="form-control" id="recipient-name" />
-                                </div>
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Email</label>
-                                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} class="form-control" id="recipient-name" />
-                                </div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary" onClick={submit} >Update</button> */}
-                      {/* </div> */}
-                      {/* </div> */}
-                      {/* </div> */}
-                      {/* </div> */}
+                      <button type="button" style={{ float: 'right' }} class="btn btn-primary" >Edit</button>
                       <h6 className="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
 
                       <div className="row">
@@ -185,54 +115,46 @@ export default function AdminDetails() {
                           <h6 className="text-muted f-w-400">{data.name}</h6>
                         </div>
                       </div>
-                      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog ">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+
+                    </div>
+                    <bitton className="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      data-bs-whatever="@mdo">&nbsp;&nbsp;&nbsp;
+                      Change Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <EditIcon></EditIcon>
+                    </bitton>
+                    <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog ">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <form onSubmit={updateAdmin}>
+
                             <div class="modal-body">
-                              <form onSubmit={submit}>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Name</label>
-                                  <input type="text" handleInput={handleInput}
-                                    value={name} name="name" /* onChange={(e) => setName(e.target.value)} */ class="form-control" id="recipient-name" />
-                                </div>
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Email</label>
-                                  <input type="email" handleInput={handleInput}
-                                    value={email} name="email" /* onChange={(e) => setEmail(e.target.value)} */ class="form-control" id="recipient-name" />
-                                </div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Update</button>
-                              </form>
+                              <div class="mb-3">
+                                <label for="recipient-name" className="col-form-label">new password</label>
+                                <input type="text" value={pdata.password} onChange={show}
+                                  name="password" /* onChange={(e) => setName(e.target.value)} */ className="form-control" id="recipient-name" />
+                              </div>
+                              <div class="mb-3">
+                                <label for="message-text" className="col-form-label">confirm password</label>
+                                <input type="text" name='confirmPassword' value={pdata.confirmPassword} onChange={show}
+                                  className="form-control" id="recipient-name" />
+                              </div>
+                              <button className='btn btn-primary' type="submit">submit</button>
                             </div>
-                            <div class="modal-footer">
-                              {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </form>
+                          <div class="modal-footer">
+                            {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               <button type="submit" class="btn btn-primary" onClick={submit} >Update</button> */}
-                            </div>
+
                           </div>
                         </div>
                       </div>
-                      {/* <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
-                      <div className="row">
-                        <div className="col-sm-6">
-                          <p className="m-b-10 f-w-600">Recent</p>
-                          <h6 className="text-muted f-w-400">Sam Disuja</h6>
-                        </div>
-                        <div className="col-sm-6">
-                          <p className="m-b-10 f-w-600">Most Viewed</p>
-                          <h6 className="text-muted f-w-400">Dinoter husainm</h6>
-                        </div>
-                      </div>
-                      <ul className="social-link list-unstyled m-t-40 m-b-10">
-                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i className="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i className="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i className="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
-                      </ul> */}
                     </div>
-
                   </div>
 
                 </div>
@@ -241,7 +163,7 @@ export default function AdminDetails() {
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }

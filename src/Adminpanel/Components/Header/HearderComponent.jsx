@@ -10,7 +10,7 @@ import Dashboard from "../BodyComponent/Dashboard/Dashboard";
 import ViewMusic from "../BodyComponent/ViewMusic"
 import AdminDetails from "../BodyComponent/AdminDetails";
 import Blog from "../BodyComponent/Blog";
-
+import AdminlogIn from "../../adminlogin";
 export default function HearderComponent() {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -37,6 +37,7 @@ export default function HearderComponent() {
           <Route exact path='/ViewMusic' render={() => <ViewMusic />} />
           <Route exact path='/analytics' render={() => <Analytics />} />
           <Route exact path='/admindetails' render={() => <AdminDetails />} />
+          <Route exact path='/logout' render={() => <AdminlogIn />} />
           {/* <Route exact path='/adminlogin' render={() => <AdminlogIn />} /> */}
           <Route exact path='/blog' render={() => <Blog />} />
         </Switch>
