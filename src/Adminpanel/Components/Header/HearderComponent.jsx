@@ -34,7 +34,7 @@ export default function HearderComponent() {
         <Switch>
           <Route exact path='/dashboard' render={() => <Dashboard />} />
           <Route exact path='/upload' render={() => <UploadMusic />} />
-          <Route exact path='/ViewMusic' render={() => <ViewMusic />} />
+          <Route exact path='/viewmusic' render={() => <ViewMusic />} />
           <Route exact path='/analytics' render={() => <Analytics />} />
           <Route exact path='/admindetails' render={() => <AdminDetails />} />
           <Route exact path='/logout' render={() => <AdminlogIn />} />

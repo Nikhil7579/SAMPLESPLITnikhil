@@ -150,7 +150,7 @@ const Search = () => {
             })
             .then((response) => {
                 setSongs(response.data.getSong);
-                console.log(response)
+                console.log(response.data.getSong)
                 //  const article=response.data.getSong ;
                 //  console.log(article);
                 //  setUpid(article.id);

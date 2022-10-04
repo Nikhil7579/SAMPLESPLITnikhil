@@ -20,6 +20,7 @@ import UserBlog from './UserBlog';
 import Splitsongs from "./Splitsongs";
 import Freestem from "./Freestem";
 import Contact from "./Contact";
+import axios from "axios";
 
 
 function getCurrPage(pathName) {
@@ -38,10 +39,10 @@ function getCurrPage(pathName) {
             return <UserBlog />
         case "/home/splitSongs":
             return <Splitsongs />
-        case"/home/freestem":
-            return <Freestem/>  
-        case"/home/contact":
-            return <Contact/>             
+        case "/home/freestem":
+            return <Freestem />
+        case "/home/contact":
+            return <Contact />
         default:
             if (pathName.startsWith("/home/playlist/")) {
                 return <Playlist />
@@ -52,10 +53,10 @@ function getCurrPage(pathName) {
 
 function Home() {
 
-
+    let [twostemps,settwostemps] = useState([]);
     const [screenSize, setScreenSize] = useState(undefined);
     const [currMusic, setCurrMusic] = useState(null);
-    const [Page, setCurrPage] = useState(<MusicCardContainer />);
+    const [Page, setCurrPage] = useState(<MusicCardContainer/>);
 
     let pathname = window.location.pathname;
     useEffect(() => {
@@ -86,53 +87,53 @@ function Home() {
         setLoaded(true)
     }, []);
 
-
+   
     return (
         <div style={useStyle.component} className={"home-container"}>
-            {
-                !loaded ?
-                    <div className="Home-skeleton">
-                        <Skeleton animation={"wave"} variant={"rect"} height={"100vh"} />
-                    </div>
-                    :
-                    <>
-                        {
-                            screenSize <= 970 ?
-                                <MobileTopNavigation /> :
-                                <Navigation />
-                        }
-                        <section className={"home-music-container"}>
-                            <div className="sidebar-home">
-                                <SideBar />
-                            </div>
-                            <div className="main-home">
-                                {
-                                    Page
-                                }
-                            </div>
+        {
+            !loaded ?
+                <div className="Home-skeleton">
+                    <Skeleton animation={"wave"} variant={"rect"} height={"100vh"} />
+                </div>
+                :
+                <>
+                    {
+                        screenSize <= 970 ?
+                            <MobileTopNavigation /> :
+                            <Navigation />
+                    }
+                    <section className={"home-music-container"}>
+                        <div className="sidebar-home">
+                            <SideBar />
+                        </div>
+                        <div className="main-home">
+                            {
+                                Page
+                            }
+                        </div> 
+                    </section>
+                    {
+                        bannerOpen
+                        &&
+                        <section className="current-large-banner">
+                            <CurrentPlayingLarge />
                         </section>
+                    }
+                    <React.Fragment>
                         {
-                            bannerOpen
-                            &&
-                            <section className="current-large-banner">
-                                <CurrentPlayingLarge />
-                            </section>
+                            // currMusic
+                                // ?
+                                // <FooterMusicPlayer music={currMusic} />
+                                // :
+                                // <FooterSelectMusic />
                         }
-                        <React.Fragment>
-                            {
-                                currMusic
-                                    ?
-                                    <FooterMusicPlayer music={currMusic} />
-                                    :
-                                    <FooterSelectMusic />
-                            }
-                            {
-                                screenSize <= 970 && <BottomNavigationMobile />
-                            }
-                        </React.Fragment>
-                    </>
-            }
-        </div>
+                        {
+                            screenSize <= 970 && <BottomNavigationMobile />
+                        }
+                    </React.Fragment>
+                </>
+        }
+    </div>
     );
 }
 

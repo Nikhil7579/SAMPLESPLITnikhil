@@ -1,12 +1,11 @@
 .home-music-container {
-  display: grid;
-  grid-template-columns: 18% 80%;
+  display: none;
   user-select: none;
 }
 
 @media only screen and (max-width: 970px) {
   .home-music-container {
-    display: flex;
+    display: none;
   }
 }
 
