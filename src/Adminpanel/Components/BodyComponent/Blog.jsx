@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import { PageHeader } from '../../Common/Components';
 import { adminblog } from '../../../api/config';
+import { useRef } from 'react';
 
 
 const Blog = () => {
@@ -12,7 +13,8 @@ const Blog = () => {
     let [files, setImage] = useState(null);
     let [title, setTitle] = useState();
     let [description, setDescription] = useState();
-
+    
+    const ImageInput = useRef();
 
     const BlogApi = () => {
         let formData = new FormData();
@@ -33,7 +35,7 @@ const Blog = () => {
             console.log(response);
             setTitle("");
             setDescription("");
-            setImage(null);
+            ImageInput.current.value="";
 
         }).catch((err) => {
             console.log(err);
@@ -76,7 +78,7 @@ const Blog = () => {
                         type="file"
                         label='show'
                         onChange={(e) => setImage(e.target.files[0])}
-
+                        ref = {ImageInput}
                     /></Button ><br /><br /><br /><br />
                 <Button variant="contained" color="primary" onClick={BlogApi}>
                     Post

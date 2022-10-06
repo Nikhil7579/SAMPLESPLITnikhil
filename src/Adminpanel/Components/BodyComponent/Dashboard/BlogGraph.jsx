@@ -172,7 +172,7 @@
 //       ],
 //       xAxisLabels: ["Mon", "Tue", "Wed", "Thurs", "Fri" , "Sat" , "Sun"],
 //     },
-    
+
 //   ];
 //   useEffect(() => {
 //     GraphAPI();
@@ -229,147 +229,146 @@
 // export default BlogGraph
 
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
 import { Bar } from 'react-chartjs-2';
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 const options = {
-    indexAxis: 'x',
-    elements: {
-      bar: {
-        borderWidth: 2,
-      },
+  indexAxis: 'x',
+  elements: {
+    bar: {
+      borderWidth: 2,
     },
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'right',
-      },
-      title: {
-        display: true,
-        text: 'User VIew Bar Chart',
-      },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'right',
     },
-  };
+    title: {
+      display: true,
+      text: 'User VIew Bar Chart',
+    },
+  },
+};
 
-const BlogGraph =() => {
+const BlogGraph = () => {
 
   const token = localStorage.getItem("logintoken")
-    const [data, setData] = useState({
-        labels:['WEEK'],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data:[],
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(25, 90, 13, 0.5)',
-          },
-          {
-            label: 'Dataset 2',
-            data:[
-            ],
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          },
-          // {
-          //   label: 'Dataset 3',
-          //   data:[],
-          //   borderColor: 'rgb(53, 162, 235)',
-          //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
-          // },
-        ],
-      });
-       
-    const tokenAPI = (token) => {
-      return ({
-        method : 'get', 
-          headers : {
-            'Content-Type': 'application/json',
-            "Authorization" : `Bearer ${token}`
-          }
-      }) 
-    }
-    
-    useEffect(()=> {
-       const fetchData= async(c)=> {
-           const url = `http://localhost:5001/api/admin/toptrackByDate?filterkey=${c}`
-          //  const token = localStorage.getItem("logintoken");
-                
-          //  const labelSet = []
-           const dataSet1 = [];
-           const dataSet2 = [];
-          //  const dataSet3 = [];
-                   
-         await fetch(url , tokenAPI(token)).then((data)=> {
-             console.log("Api data", data)
-             const res = data.json();
-             return res
-         }).then((res) => {
-             console.log("ressss", res.sumtData)
-            // for (const val of res) {
-                dataSet1.push(res.sumtData)
-                dataSet2.push(res.sumtData)
-                // dataSet2.push(res.MONTH)
-            //     // dataSet2.push(val.MONTH)
-            //     // labelSet.push(val.name)
-            // }
-            setData({
-                labels:['Today'],
-                datasets: [
-                  {
-                    label: 'Today',
-                    data:dataSet1,
-                    borderColor: 'rgb(236, 251, 47)',
-                    backgroundColor: 'rgba(251, 93, 47)',
-                  },
-                  {
-                    label: 'Week',
-                    data:dataSet2,
-                    borderColor: 'rgb(53, 162, 235)',
-                    backgroundColor: 'rgba(47, 251, 180)',
-                  },
-                  // {
-                  //   label: 'Dataset ID3',
-                  //   data:dataSet3,
-                  //   borderColor: 'rgb(53, 162, 235)',
-                  //   backgroundColor: 'rgba(53, 235, 0.5)',
-                  // },
-                ],
-              })
-                  console.log(setData.data)
-              //  console.log(res.sumtData)
-              //  setData(res.dataSet1);
-               // console.log("arrData", dataSet1, dataSet2)
-         }).catch(err => {
-                console.log("error", err)
-            })
-        }
-        
-        fetchData();
-    },[])
-          
-    return(
-        <div style={{width:'80%', height:'50%'}}>
+  const [data, setData] = useState({
+    labels: ['WEEK'],
+    datasets: [
+      {
+        label: 'Dataset 1',
+        data: [],
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(25, 90, 13, 0.5)',
+      },
+      {
+        label: 'WEEK',
+        data: [],
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+      {
+        label: 'MONTH',
+        data: [],
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+    ],
+  });
+
+  const tokenAPI = (token) => {
+    return ({
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`
+      }
+    })
+  }
+
+  useEffect(() => {
+    const fetchData = async (c) => {
+      const url = `http://localhost:5001/api/admin/toptrackByDate?filterkey=${c}`
+      //  const token = localStorage.getItem("logintoken");
+
+      //  const labelSet = []
+      const dataSet1 = [];
+      const dataSet2 = [];
+      const dataSet3 = [];
+
+      await fetch(url, tokenAPI(token)).then((data) => {
+        console.log("Api data", data)
+        const res = data.json();
+        return res
+      }).then((res) => {
+        console.log("ressss", res.sumtData)
+        // for (const val of res) {
+        dataSet1.push(res.sumtData)
+        dataSet2.push(res.sumtData)
+        dataSet3.push(res.sumtData)
+        //     // labelSet.push(val.name)
+        // }
+        setData({
+          labels: ['Today'],
+          datasets: [
             {
-                // console.log("dataaaaaa", data)
-            }
-            <Bar data={data} options={options}/>
-         </div>)
+              label: 'today',
+              data: dataSet1,
+              borderColor: 'rgb(236, 251, 47)',
+              backgroundColor: 'rgba(251, 93, 47)',
+            },
+            {
+              label: 'Week',
+              data: dataSet2,
+              borderColor: 'rgb(53, 162, 235)',
+              backgroundColor: 'rgba(47, 251, 180)',
+            },
+            {
+              label: 'MONTH',
+              data: dataSet3,
+              borderColor: 'rgb(53, 162, 235)',
+              backgroundColor: 'rgba(53, 235, 0.5)',
+            },
+          ],
+        })
+        console.log(setData.data)
+        //  console.log(res.sumtData)
+        //  setData(res.dataSet1);
+        // console.log("arrData", dataSet1, dataSet2)
+      }).catch(err => {
+        console.log("error", err)
+      })
+    }
+    fetchData();
+    // fetchData("WEEK");
+    // fetchData("MONTH");
+  }, [])
+
+  return (
+    <div style={{ width: '80%', height: '50%' }}>
+      {
+        // console.log("dataaaaaa", data)
+      }
+      <Bar data={data} options={options} />
+    </div>)
 }
 export default BlogGraph;

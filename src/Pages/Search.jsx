@@ -192,7 +192,7 @@ const Search = () => {
                 style={{ marginLeft: 100, marginTop: 10, textalign: "center", width: 400 }}
                 onChange={(e) => setQuery(e.target.value)} />
             {songs.filter((user) =>
-                user.trackTitle.toLowerCase().includes(query)).map((item, i) => {
+                user.trackTitle.toLowerCase().includes(query.toLowerCase())).map((item, i) => {
                     return (
                         <>
 

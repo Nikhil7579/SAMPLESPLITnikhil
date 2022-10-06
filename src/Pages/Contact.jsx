@@ -1,77 +1,79 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import emailjs from 'emailjs-com'
+import { CommentsDisabledOutlined } from '@mui/icons-material'
 // import Container from "../fragment/Container";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Contact = () => {
-
-  const [formStatus, setFormStatus] = React.useState('Send')
+  const [formStatus, setFormStatus] = useState()
+  const form = useRef();
   const onSubmit = (e) => {
     e.preventDefault()
-    emailjs.sendForm('service_oup7zou', 'template_gujdbxo', e.target, 'DVxDLyoWzOz8krDSw')
+    emailjs.sendForm('service_oup7zou', 'template_gujdbxo', e.target,form.current, 'DVxDLyoWzOz8krDSw')
       .then((result) => {
-          console.log(result.text);
+        console.log(result.text);
+        console.log("done");
+        form.current.value = "";
+
 
       }, (error) => {
-          console.log(error.text);
+        console.log(error.text);
       });
-    setFormStatus('Message Sent');
-    // setFormStatus("");
+    setFormStatus('');
 
-    let { name, email, message, Subject} = e.target.elements
+    let { name, email, message, Subject } = e.target.elements
     let conFom = {
       name: name.value,
       email: email.value,
       Subject: Subject.value,
-      message: message.value,     
-    }        
-    console.log(conFom);
-    formStatus("")
+      message: message.value,
+    }
+
     // name("");
     // email("");
     // Subject("");
     // message("");
     // setFormStatus("");
   }
-  
+
   return (
     // <Container>
     <>
-      <div class="card text-light" style={{width: 650 , marginLeft: 150 , backgroundColor:"#1F2D5A"}}>
-    <div className="container mt-2">
-      <h2 className="mb-3 text-center">ContactUs Form </h2>
-      <form onSubmit={onSubmit}
-      >
-        <div className="mb-3">
-          <label className="form-label" htmlFor="name">
-            Name
-          </label>
-          <input className="form-control" type="text" name="name" required />
+      <div class="card text-light" style={{ width: 650, marginLeft: 150, backgroundColor: "#1F2D5A" }}>
+        <div className="container mt-2">
+          <h2 className="mb-3 text-center">ContactUs Form </h2>
+          <form onSubmit={onSubmit}
+          >
+            <div className="mb-3">
+              <label ref={form} className="form-label" htmlFor="name" >
+                Name
+              </label>
+              <input className="form-control" type="text" name="name" required />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="email">
+                Email
+              </label>
+              <input className="form-control" type="email" name="email" required />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="Subject">
+                Subject
+              </label>
+              <input className="form-control" type="text" name="subject" required />
+            </div>
+            <div className="mb-3">
+              <label className="form-label" htmlFor="message">
+                Message
+              </label>
+              <textarea className="form-control" name="message" required />
+            </div>
+            <button className="btn btn-danger" type="submit">
+              formStatus
+            </button>
+          </form>
         </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            Email
-          </label>
-          <input className="form-control" type="email" name="email" required />
-        </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="Subject">
-            Subject
-          </label>
-          <input className="form-control" type="text" name="subject" required />
-        </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="message">
-            Message
-          </label>
-          <textarea className="form-control" name="message" required />
-        </div>
-        <button className="btn btn-danger" type="submit">
-          {formStatus}
-        </button>       
-      </form>      
-    </div>
-    </div>
+      </div>
     </>
     // </Container>
   )
@@ -97,11 +99,11 @@ export default Contact
 //       </label>
 //       <input
 //         id="email"
-//         type="email" 
+//         type="email"
 //         name="email"
 //       />
-//       <ValidationError 
-//         prefix="Email" 
+//       <ValidationError
+//         prefix="Email"
 //         field="email"
 //         errors={state.errors}
 //       />
@@ -109,8 +111,8 @@ export default Contact
 //         id="message"
 //         name="message"
 //       />
-//       <ValidationError 
-//         prefix="Message" 
+//       <ValidationError
+//         prefix="Message"
 //         field="message"
 //         errors={state.errors}
 //       />

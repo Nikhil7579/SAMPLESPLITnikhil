@@ -7,10 +7,13 @@ import axios from 'axios';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import { PageHeader } from "../../Common/Components";
 import { uploadmusic } from "../../../api/config";
+import { useRef } from "react";
 
 const BlogPost = () => {
 
   let token = localStorage.getItem('logintoken')
+  const imageinput = useRef();
+  const musicinput = useRef();
 
   let [files, setImage] = useState(null);
   let [music, setMusic] = useState();
@@ -45,8 +48,8 @@ const BlogPost = () => {
       }
     ).then((response) => {
       console.log(response);
-      setImage("");
-      setMusic("");
+      imageinput.current.value = "";
+      musicinput.current.value = "";
       settrackTitle("");
       settrackType("");
       setbpm("");
@@ -168,6 +171,7 @@ const BlogPost = () => {
             <input
               type="file"
               label='show'
+              ref={imageinput}
               onChange={(e) => setImage(e.target.files[0])}
             />
           </Button>
@@ -180,7 +184,7 @@ const BlogPost = () => {
             <input
               onChange={(e) => setMusic(e.target.files[0])}
               type="file"
-              show
+              ref={musicinput}
             />
           </Button>
           {/* <TextField

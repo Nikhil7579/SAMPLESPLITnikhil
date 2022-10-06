@@ -296,7 +296,7 @@ const ViewMusic = () => {
                   <p>{songs.type}</p>
                 </div>
 
-              <IconButton>  <PaidIcon onClick={()=>handleOpen(songs.id)} >Add Price</PaidIcon></IconButton>
+              <IconButton hover={hover}>  <PaidIcon onClick={()=>handleOpen(songs.id)} sx={{color:'#1F2D5A'}} >Add Price</PaidIcon></IconButton>
 
                 <IconButton hover={hover} >
                   <EditIcon
@@ -402,7 +402,7 @@ const ViewMusic = () => {
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary"
+                            <button type="submit" className="btn btn-primary" 
                             //  onClick={() => {
                             //   submit(songs.id)
                             // }}
