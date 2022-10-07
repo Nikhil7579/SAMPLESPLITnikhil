@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => {
       color: "White",
       backgroundColor: blue["A400"],
     },
-
+    
     //header
     wrapper: {
       width: "100%",

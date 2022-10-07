@@ -14,7 +14,7 @@ export const admindetailsedit = `http://localhost:5001/api/admin/updateProfile`;
 export const toptracks = `http://localhost:5001/api/admin/topTrack`;
 export const topfans = `http://localhost:5001/api/admin/getTopFans`;
 export const changestatus = `http://localhost:5001/api/admin/changeStatus/`;
-export const addprice = `http://localhost:5001/api/admin/AddPayment/32`;
+export const addprice = `http://localhost:5001/api/admin/AddPayment/`;
 export const changepassword = `http://localhost:5001/api/admin/changePassword`
 
 
@@ -29,4 +29,4 @@ export const mostdiscussed = `http://localhost:5001/api/user/mostDiscuss/`;
 export const usermostplayed = `http://localhost:5001/api/user/mostplayed/`;
 export const userLogOut = `http://localhost:5001/api/user/logOut`;
 export const fourStemps =`http://localhost:5001/api/user/getFourSteamsSong?filterKey=`
-export const twoStemps = `http://localhost:5001/api/user/getTowSteamsSong?filterKey=`
+export const twoStemps = `http://localhost:5001/api/user/getTwoSteamsSong?filterKey=`

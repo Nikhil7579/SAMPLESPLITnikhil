@@ -68,27 +68,29 @@ function MusicCardContainer() {
                         </button>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                             <li><p class="dropdown-item " onClick={() => fourstemps("Vocals")}>Vocals</p></li>
-                            <li><p class="dropdown-item"onClick={() => fourstemps("Drums")} >Drums</p></li>
+                            <li><p class="dropdown-item" onClick={() => fourstemps("Drums")} >Drums</p></li>
                             <li><p class="dropdown-item" onClick={() => fourstemps("Bass")} >Bass</p></li>
                             <li><p class="dropdown-item" onClick={() => fourstemps("Other")}>Other</p></li>
                         </ul>
                     </div>
                 </div>
-                <div style={{overflow:'hidden'}}>
+                <div style={{ overflow: 'hidden' }}>
                     {twostemps.map((value, index) => {
                         return (
                             <>
-                                <div style={{ width: '800px', height: '55px', background: '#fafafa ', margin: '10px', float: 'left' }}>
+                                <div style={{ width: '800px', height: '54px', background: 'cyan ', margin: '10px', float: 'left' }}>
                                     <div key={index}>
-                                        <img src={value.imageName} alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
+                                        <img src={value.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
                                     </div>
-                                    <div style={{ height: '100px', float: 'left' }}>
-                                        <audio controls >
+                                    <div style={{ height: '55px', float: 'left', borderRadius: "0px" }}>
+                                        <audio controls style={{ backgroundColor: "#C8C8C8" }}>
                                             <source src={value.music} type="audio/ogg" />
                                         </audio>
                                     </div >
-                                    <div style={{ float: 'left', textAlign: 'center', width: '200px', height: '55px' }}>
-                                        <h5>{value.trackTitle}</h5>
+                                    <div style={{ float: 'left', width: '200px', height: '54px' }}>
+                                        <h5 style={{ textAlign: 'center',lineHeight:'54px'}} >{value.trackTitle}</h5>
+                                    </div>
+                                    <div style={{ float: 'left', textAlign: 'center',lineHeight:"54px", width: '200px', height: '54px' }}>
                                         <p>{value.trackType}</p>
                                     </div>
                                 </div>

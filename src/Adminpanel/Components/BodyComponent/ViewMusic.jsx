@@ -1,21 +1,3 @@
-// import { Box } from "@mui/system";
-// import React from "react";
-// import { PageHeader } from "../../Common/Components";
-// import AudioPlayer from "../Music Player/AudioPlayer";
-// import tracks from "../Music Player/tracks";
-
-// const ViewMusic = () => {
-//     return(
-//         <>
-//         <Box mt={2}>
-//         <PageHeader title='View Music' />
-//       </Box>
-//       <AudioPlayer tracks={tracks} />
-
-//         </>
-//     )
-// }
-// export default ViewMusic;
 import { Box } from "@mui/system";
 import axios from "axios";
 import React from "react";
@@ -24,15 +6,11 @@ import { useEffect } from "react";
 // import { deletemusic, viewmusic, editmusic } from "../../../api/config";
 import { PageHeader } from "../../Common/Components";
 import { Button } from "@mui/material";
-import './Viewmusic.css'
-import { useHistory, useParams } from "react-router-dom";
-import { Grid } from "@mui/material"
+import './AdminDetails.css'
 import { FormControl } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { IconButton, Select } from "@material-ui/core";
 import { InputLabel } from "@material-ui/core";
-import { Fade } from "@mui/material";
-import { Backdrop } from "@material-ui/core";
 import { Modal } from "@mui/material";
 import { Typography } from "@mui/material";
 
@@ -52,8 +30,8 @@ const ViewMusic = () => {
   const [open, setOpen] = React.useState(false);
   const [updateId, SetupdateID] = useState("")
   const handleOpen = (id) => {
-   console.log(id)
-   SetupdateID(id)
+    console.log(id)
+    SetupdateID(id)
     setOpen(true);
   }
   const handleClose = () => setOpen(false);
@@ -70,6 +48,7 @@ const ViewMusic = () => {
     boxShadow: 24,
     p: 4,
   }
+
 
 
   let [viewMusic, setViewMusicdetails] = useState([]);
@@ -147,7 +126,7 @@ const ViewMusic = () => {
   }, [])
 
   // Update Music  API
-  const submit = (event) => {
+  const submit = (event, handle) => {
     event.preventDefault()
     let formData = new FormData();
     console.log(imageName, music, trackTitle, trackType, bpm, keyOptional, primaryGenre, type, updatingID)
@@ -165,8 +144,11 @@ const ViewMusic = () => {
         "Content-type": "multipart/form-data", "Authorization": `Bearer ${token}`
       },
     }).then((res) => {
-      console.log(res);
       app('');
+      console.log(res);
+      if (res.status === 201) {
+        window.alert("done");
+      }
     }).catch((err) => {
       console.log(err)
     });
@@ -196,15 +178,15 @@ const ViewMusic = () => {
   const show = (e) => {
     updatedata({ ...data, [e.target.name]: e.target.value });
   };
-  const pp = (e,id) => {
+  const pp = (e, id) => {
     e.preventDefault()
     console.log(id)
     axios(
       {
-        url: `http://localhost:5001/api/admin/AddPayment/${updateId}`,
+        url: `${addprice}${updateId}`,
         method: "post",
         data: {
-          amount:data.price
+          amount: data.price
         },
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -236,7 +218,7 @@ const ViewMusic = () => {
             <form onSubmit={pp}>
               <div className="form-group m-1">
                 <label>Price</label>
-                <input type="number" className="form-control" name='price' value={data.price} onChange={show} 
+                <input type="number" className="form-control" name='price' value={data.price} onChange={show}
                   placeholder="price" />
               </div>
               <button type="submit" className="btn btn-primary m-1" >Submit</button>
@@ -274,29 +256,29 @@ const ViewMusic = () => {
         {viewMusic.map((songs, index) => {
           return (
             <>
-              <div style={{ width: '100%', height: '55px', background: 'white', margin: '10px', float: 'left' }}>
+              <div className="bg-purple" style={{ width: '100%', height: '54px', margin: '10px', float: 'left' }}>
                 <div key={index}>
-                  <img src={songs.imageName} alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
+                  <img src={songs.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
                 </div>
-                <div style={{ height: '100px', float: 'left' }}>
-                  <audio controls controlsList="nodownload noplaybackrate ">
+                <div style={{ height: '54px', float: 'left' }}>
+                  <audio controls controlsList="nodownload noplaybackrate " style={{ backgroundColor: "#C8C8C8" }}>
                     <source src={songs.music} type="audio/ogg" />
                   </audio>
                 </div >
-                <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '54px' }}>
                   <h5>{songs.trackTitle}</h5>
                   <p>{songs.trackType}</p>
                 </div>
-                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
                   <h5>{songs.bpm}</h5>
                   <p>{songs.keyOptional}</p>
                 </div>
-                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
                   <h5>{songs.primaryGenre}</h5>
                   <p>{songs.type}</p>
                 </div>
 
-              <IconButton hover={hover}>  <PaidIcon onClick={()=>handleOpen(songs.id)} sx={{color:'#1F2D5A'}} >Add Price</PaidIcon></IconButton>
+                <IconButton hover={hover}>  <PaidIcon onClick={() => handleOpen(songs.id)} sx={{ color: '#1F2D5A' }} >Add Price</PaidIcon></IconButton>
 
                 <IconButton hover={hover} >
                   <EditIcon
@@ -323,7 +305,7 @@ const ViewMusic = () => {
                   }}></DeleteIcon> </IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
                 {/* }}>DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; */}
                 {/* <DeleteIcon /> */}
-                <FormControl sx={{ m: 1, minWidth: 80 }}>
+                <FormControl sx={{ m: 0.8, minWidth: 80 }}>
                   <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
                   <Select
                     labelId="demo-simple-select-autowidth-label"
@@ -337,28 +319,6 @@ const ViewMusic = () => {
                     <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
                   </Select>
                 </FormControl>
-                {/* <div style={{ marginTop: '100px' }} className="modal fade" id="exampleModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Add Price</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <form onSubmit={pp}>
-                        <div className="modal-body">
-                          <div className="mb-3">
-                            <label for="recipient-name" className="col-form-label">Price</label>
-                            <input type="number" name="price" value={data.price} onChange={show} className="form-control" id="recipient-name" />
-                          </div>
-                          <div className="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Price</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div> */}
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
                   <div className="modal-dialog">
                     <div className="modal-content">
@@ -402,15 +362,12 @@ const ViewMusic = () => {
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" 
+                            <button type="submit" className="btn btn-primary" data-bs-dismiss="model" aria-label="Close"
                             //  onClick={() => {
                             //   submit(songs.id)
                             // }}
                             >Update</button>
                           </div>
-                          {/* <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-primary">Update</button> */}
                         </div>
                       </form>
                     </div>

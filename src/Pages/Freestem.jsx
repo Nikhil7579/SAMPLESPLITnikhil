@@ -192,30 +192,29 @@ const url = categoryMusic;
             <>
               <div 
               onClick={()=>MostPlayed(value.id)}
-              style={{ width: '100%', height: '55px', background: 'white', margin: '10px',marginLeft:"100px", float: 'left' }}>
+              style={{ width: '800px', height: '54px', background: '#1F2D5A',color:'white', margin: '10px',marginLeft:"100px", float: 'left' }}>
                 <div 
                 // onClick={()=>MostPlayed(value.id)}
                 >
-                  <img src={value.imageName} alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
+                  <img src={value.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
                 </div>
                 <div 
                 // onClick={()=>MostPlayed(value.id)}
-                style={{ height: '100px', float: 'left' }}>
-                  <audio controls>
+                style={{ height: '54px', float: 'left' }}>
+                  <audio controls style={{ backgroundColor: "#C8C8C8" }}>
                     <source src={value.music} type="audio/ogg"  
                             // onClick={()=>MostPlayed(value.id)}
                             />
                   </audio>
                 </div >
-                <div style={{ float: 'left', textAlign: 'center', width: '200px', height: '55px' }}>
-                  <h5>{value.trackTitle}</h5>
-                  <p>{value.trackType}</p>
+                <div style={{ float: 'left', width: '200px', height: '54px' }}>
+                  <h5 style={{lineHeight:'54px',textAlign: 'center'}}>{value.trackTitle}</h5>
                 </div>
-                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
                   <h5>{value.bpm}</h5>
                   <p>{value.keyOptional}</p>
                 </div>
-                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '55px' }}>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
                   <h5>{value.primaryGenre}</h5>
                   <p>{value.type}</p>
                 </div>

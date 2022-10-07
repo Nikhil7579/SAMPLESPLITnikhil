@@ -259,11 +259,10 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right',
+      position: 'top',
     },
     title: {
       display: true,
-      text: 'User VIew Bar Chart',
     },
   },
 };
@@ -271,29 +270,11 @@ const options = {
 const BlogGraph = () => {
 
   const token = localStorage.getItem("logintoken")
-  const [data, setData] = useState({
-    labels: ['WEEK'],
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(25, 90, 13, 0.5)',
-      },
-      {
-        label: 'WEEK',
-        data: [],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-      {
-        label: 'MONTH',
-        data: [],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  });
+  const [monthData, setMonthData] = useState([])
+  const [weekData, setWeekData] = useState([])
+  const [todayData, setTodayData] = useState([])
+  
+
 
   const tokenAPI = (token) => {
     return ({
@@ -304,71 +285,80 @@ const BlogGraph = () => {
       }
     })
   }
-
+ 
   useEffect(() => {
+    const todayData = [];
+      const weekData = [];
+      const monthData = [];
     const fetchData = async (c) => {
       const url = `http://localhost:5001/api/admin/toptrackByDate?filterkey=${c}`
       //  const token = localStorage.getItem("logintoken");
-
-      //  const labelSet = []
-      const dataSet1 = [];
-      const dataSet2 = [];
-      const dataSet3 = [];
-
       await fetch(url, tokenAPI(token)).then((data) => {
-        console.log("Api data", data)
+        // console.log("Api data", data)
         const res = data.json();
         return res
       }).then((res) => {
         console.log("ressss", res.sumtData)
         // for (const val of res) {
-        dataSet1.push(res.sumtData)
-        dataSet2.push(res.sumtData)
-        dataSet3.push(res.sumtData)
+        if(c == "TODAY"){
+          todayData.push(res.sumtData)
+          setTodayData(todayData)
+
+        }else if(c == "WEEK"){
+          weekData.push(res.sumtData)
+        setWeekData(weekData)
+
+        }else if(c == "MONTH"){
+          console.log(res.sumtData)
+          monthData.push(res.sumtData)
+        setMonthData(monthData)
+
+        }
         //     // labelSet.push(val.name)
         // }
-        setData({
-          labels: ['Today'],
-          datasets: [
-            {
-              label: 'today',
-              data: dataSet1,
-              borderColor: 'rgb(236, 251, 47)',
-              backgroundColor: 'rgba(251, 93, 47)',
-            },
-            {
-              label: 'Week',
-              data: dataSet2,
-              borderColor: 'rgb(53, 162, 235)',
-              backgroundColor: 'rgba(47, 251, 180)',
-            },
-            {
-              label: 'MONTH',
-              data: dataSet3,
-              borderColor: 'rgb(53, 162, 235)',
-              backgroundColor: 'rgba(53, 235, 0.5)',
-            },
-          ],
-        })
-        console.log(setData.data)
-        //  console.log(res.sumtData)
-        //  setData(res.dataSet1);
-        // console.log("arrData", dataSet1, dataSet2)
+        // console.log(setData.data)
       }).catch(err => {
         console.log("error", err)
       })
     }
-    fetchData();
-    // fetchData("WEEK");
-    // fetchData("MONTH");
+    fetchData("TODAY");
+    fetchData("WEEK");
+    fetchData("MONTH");
   }, [])
-
+  console.log(monthData[0])
+  const datas =  {
+    labels: ['Music Viewed'],
+    datasets: [
+      {
+        label: 'Today',
+        data: todayData,
+        // borderColor: 'rgb(255, 99, 132)',
+        // backgroundColor: 'rgba(25, 90, 13, 0.5)',
+        backgroundColor :'#90f7c9',
+      },
+      {
+        label: 'WEEK',
+        data: weekData,
+        // borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: '#43f6f6',
+      },
+      {
+        label: 'MONTH',
+        data: monthData,
+        // borderColor: 'rgb(53, 162, 235)',
+        // backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        backgroundColor: '#fcb045',
+        
+      },
+    ],
+  }
   return (
     <div style={{ width: '80%', height: '50%' }}>
+      <h3 style={{textAlign:'center'}} >User View Bar Chart</h3>
       {
         // console.log("dataaaaaa", data)
       }
-      <Bar data={data} options={options} />
+      <Bar data={datas} options={options} />
     </div>)
 }
 export default BlogGraph;

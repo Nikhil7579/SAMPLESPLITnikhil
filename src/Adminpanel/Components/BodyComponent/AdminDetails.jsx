@@ -35,7 +35,6 @@ export default function AdminDetails() {
   let [profile, updateprofile] = useState({ name: "", email: "" });
   let token = localStorage.getItem("logintoken")
 
-  console.log(token)
   useEffect(() => {
     AdminProfile();
   }, []);
@@ -62,15 +61,11 @@ export default function AdminDetails() {
   }
   const show = (e) => {
     updatechangepass({ ...changepass, [e.target.name]: e.target.value });
-    console.log(updatechangepass)
   };
-  console.log(token);
 
   // Admin Change Password API
   const updateAdmin = (e) => {
     e.preventDefault();
-    console.log(changepass.password)
-    console.log(changepass.confirmPassword)
     axios(
       {
         url: `${changepassword}`,
@@ -89,10 +84,11 @@ export default function AdminDetails() {
       localStorage.clear();
       if (res.status === 200) {
         window.location.href = "/adminlogin";
-
       }
     }).catch((err) => {
       console.log(err);
+      window.alert("Wrogn Password")
+
     })
   };
 

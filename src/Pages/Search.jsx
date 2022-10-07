@@ -158,9 +158,9 @@ const Search = () => {
                 console.log(err);
             })
     }
-    useEffect(() => {
-        searchApi();
-    }, [])
+    // useEffect(() => {
+    //     searchApi();
+    // }, [])
 
     const MostDiscuss = (id) => {
         console.log(id);
@@ -188,8 +188,8 @@ const Search = () => {
             <h1>{discuss.trackTitle}</h1>       */}
             <input type="text"
                 placeholder="search here"
-
-                style={{ marginLeft: 100, marginTop: 10, textalign: "center", width: 400 }}
+                onKeyPress={searchApi}
+                style={{ marginLeft: 100, marginTop: 10, textalign: "center", width: 477, height:40 }}
                 onChange={(e) => setQuery(e.target.value)} />
             {songs.filter((user) =>
                 user.trackTitle.toLowerCase().includes(query.toLowerCase())).map((item, i) => {
@@ -210,20 +210,22 @@ const Search = () => {
                             </div>
                         </div> */}
                             <div 
-                            onClick={()=>MostDiscuss(item.id)}
-                            style={{ width: '100%', height: '55px', background: 'white', margin: '10px', marginLeft: "100px", float: 'left' }}>
+                            onClick={()=>MostDiscuss(item.id) }
+                            style={{ width: '44%', height: '41px', background: 'white', 
+                                     margin: '10px', marginLeft: "100px", float: 'left',
+                                     backgroundColor:'#cfcccc'}}>
                                 <div>
                                     <img src={item.imageName}
                                     //  onClick={() => MostDiscuss(item.id)}
-                                        alt="/" style={{ width: '100px', height: '55px', float: 'left' }} />
+                                        alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
                                 </div>
-                                <div style={{ height: '100px', float: 'left' }}>
+                                {/* <div style={{ height: '100px', float: 'left' }}>
                                     <audio controls>
                                         <source src={item.music} type="audio/ogg"/>
                                     </audio>
-                                </div >
-                                <div style={{ float: 'left', textAlign: 'center', width: '200px', height: '5px' }}>
-                                    <h5>{item.trackTitle}</h5>  </div>
+                                </div > */}
+                                <div style={{ marginLeft:280  }}>
+                                    <h5 style={{ textAlign: 'center', lineHeight:'45px' }}>{item.trackTitle}</h5>  </div>
                             </div>
                         </>
                     )
